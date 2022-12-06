@@ -17,3 +17,30 @@ git push // Push code to github on same branch. Same as git push origin or git p
 ```
 git pull origin dev // Have fun merging conflicts in VSCODE
 ```
+
+# GitHub Project
+1. For every branch/feature/task, add an issue to the repository
+
+# Styling
+1. Use camelCase for variables and functions/methods
+
+```
+superLongExampleThatNeverEnds
+```
+
+2. Use UpperCamelCase for 
+
+```
+SuperSimpleClassNameExampleButNotReally
+```
+
+3. Let's use Es6 imports
+
+```
+import variable from "../../../file-path.js"
+```
+
+4. Add `"type": "module",` to package.json
+    * Additionally, I will add some experimental arguments for running node to ensure we can leave off the .js
+
+ 
