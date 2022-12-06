@@ -1,3 +1,7 @@
+.vscode
 node_modules
+
+*.png:Zone.Identifier
 .env
 .DS_Store
+package-lock.json
