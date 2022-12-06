@@ -1,24 +1,41 @@
 {
-  "name": "user-list",
-  "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "seed": "node seeds/seed.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "bcrypt": "^5.0.0",
-    "connect-session-sequelize": "^7.0.4",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "express-handlebars": "^5.2.0",
-    "express-session": "^1.17.1",
-    "mysql2": "^2.2.5",
-    "sequelize": "^6.3.5"
-  }
+	"name": "college-football-pickem",
+	"version": "1.0.0",
+	"description": "interactive site to host a college football pickem league",
+	"main": "server.js",
+	"type": "module",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "node --experimental-modules --es-module-specifier-resolution=node server",
+		"dev": "npx nodemon server",
+		"seed": "node --experimental-modules --es-module-specifier-resolution=node seeds"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "MIT",
+	"dependencies": {
+		"bcrypt": "^5.0.0",
+		"chart.js": "^4.0.1",
+		"connect-session-sequelize": "^7.0.4",
+		"dotenv": "^8.2.0",
+		"express": "^4.17.1",
+		"express-handlebars": "^5.2.0",
+		"express-session": "^1.17.1",
+		"mysql2": "^2.2.5",
+		"sequelize": "^6.3.5",
+		"sportsdataverse": "^1.2.3"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Hunter-Mayer/college-football-pickem.git"
+	},
+	"bugs": {
+		"url": "https://github.com/Hunter-Mayer/college-football-pickem/issues"
+	},
+	"homepage": "https://github.com/Hunter-Mayer/college-football-pickem#readme",
+	"nodemonConfig": {
+		"execMap": {
+			"js": "node --experimental-modules --es-module-specifier-resolution=node"
+		}
+	}
 }
