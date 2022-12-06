@@ -37,5 +37,9 @@
 		"execMap": {
 			"js": "node --experimental-modules --es-module-specifier-resolution=node"
 		}
+	},
+	"devDependencies": {
+		"jest": "^29.3.1",
+		"nodemon": "^2.0.20"
 	}
 }
