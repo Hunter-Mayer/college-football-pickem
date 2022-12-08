@@ -14,15 +14,17 @@ Game.init(
 			primaryKey: true,
 			autoIncrement: true,
 		},
-		home: {
+		home_team: {
 			type: DataTypes.INTEGER,
+			allowNull: false,
 			references: {
 				model: Team,
 				key: "id",
 			},
 		},
-		away: {
+		away_team: {
 			type: DataTypes.INTEGER,
+			allowNull: false,
 			references: {
 				model: Team,
 				key: "id",
@@ -30,6 +32,7 @@ Game.init(
 		},
 		date_id: {
 			type: DataTypes.INTEGER,
+			allowNull: false,
 			references: {
 				model: Date,
 				foreignKey: "id",
