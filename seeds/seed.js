@@ -1,7 +1,6 @@
-const sequelize = require("../config/connection");
-const { User } = require("../models");
-
-const userData = require("./userData.json");
+import sequelize from "../config/connection";
+import { User } from "../models";
+import userData from "./userData.json" assert { type: "json" };
 
 const seedDatabase = async () => {
 	await sequelize.sync({ force: true });
