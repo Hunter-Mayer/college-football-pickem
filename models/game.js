@@ -1,6 +1,6 @@
 import { Model, DataTypes } from "sequelize";
 import sequelize from "../config/connection";
-import Team from "team";
+import Team from "./team";
 
 class Game extends Model {}
 

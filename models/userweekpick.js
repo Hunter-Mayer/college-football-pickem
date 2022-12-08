@@ -1,8 +1,8 @@
 import { Model, DataTypes } from "sequelize";
 import sequelize from "../config/connection";
-import User from "user";
-import Week from "week";
-import Pick from "pick";
+import User from "./user";
+import Week from "./week";
+import Pick from "./pick";
 
 class UserWeekPick extends Model {}
 
