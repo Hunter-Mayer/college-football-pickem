@@ -29,4 +29,12 @@ router.get("/login", (req, res) => {
 	res.render("login");
 });
 
+router.get('/teampicker', (req, res) => {
+  res.render('teampicker')
+})
+
+router.get('/scoreboard', (req, res) => {
+  res.render('scoreboard')
+})
+
 module.exports = router;
