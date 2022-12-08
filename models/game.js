@@ -1,6 +1,7 @@
 import { Model, DataTypes } from "sequelize";
 import sequelize from "../config/connection";
 import Team from "./team";
+import Date from "./date";
 
 class Game extends Model {}
 
@@ -25,6 +26,13 @@ Game.init(
 			references: {
 				model: Team,
 				key: "id",
+			},
+		},
+		date_id: {
+			type: DataTypes.INTEGER,
+			references: {
+				model: Date,
+				foreignKey: "id",
 			},
 		},
 	},
