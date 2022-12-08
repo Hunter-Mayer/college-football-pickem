@@ -1,9 +1,16 @@
+<<<<<<< HEAD
 import express from "express";
 const router = express.Router();
 import apiRoutes from "./api";
 import homeRoutes from "./homeRoutes";
+=======
+const router = require("express").Router();
 
-router.use("/", homeRoutes);
-router.use("/api", apiRoutes);
+const apiRoutes = require('./api');
+const viewRoutes = require('./viewRoutes');
+>>>>>>> dev
+
+router.use('/', viewRoutes);
+router.use('/api', apiRoutes);
 
 export default router;
