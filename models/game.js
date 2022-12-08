@@ -11,6 +11,8 @@ Game.init(
 			primaryKey: true,
 			autoIncrement: true,
 		},
+		team_1: {},
+		team_2: {},
 	},
 	{
 		sequelize,
