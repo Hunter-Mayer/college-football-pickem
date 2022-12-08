@@ -4,4 +4,4 @@ import userRoutes from "./userRoutes";
 
 router.use("/users", userRoutes);
 
-module.exports = router;
+export default router;

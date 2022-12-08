@@ -27,69 +27,68 @@ Pick.belongsTo(User, {
 
 // Week associations
 
-Week.hasOne(Game, {
-	foreignKey: "id",
-	as: "game_1",
-});
+// Week.hasOne(Game, {
+// 	foreignKey: "id",
+// 	as: "game_1",
+// });
 
-Week.hasOne(Game, {
-	foreignKey: "id",
-	as: "game_2",
-});
+// Week.hasOne(Game, {
+// 	foreignKey: "id",
+// 	as: "game_2",
+// });
 
-Week.hasOne(Game, {
-	foreignKey: "id",
-	as: "game_3",
-});
+// Week.hasOne(Game, {
+// 	foreignKey: "id",
+// 	as: "game_3",
+// });
 
-Week.hasOne(Game, {
-	foreignKey: "id",
-	as: "game_4",
-});
+// Week.hasOne(Game, {
+// 	foreignKey: "id",
+// 	as: "game_4",
+// });
 
-Week.hasOne(Game, {
-	foreignKey: "id",
-	as: "game_5",
-});
+// Week.hasOne(Game, {
+// 	foreignKey: "id",
+// 	as: "game_5",
+// });
 
-Week.hasOne(Game, {
-	foreignKey: "id",
-	as: "game_6",
-});
+// Week.hasOne(Game, {
+// 	foreignKey: "id",
+// 	as: "game_6",
+// });
 
-Week.hasOne(Game, {
-	foreignKey: "id",
-	as: "game_7",
-});
+// Week.hasOne(Game, {
+// 	foreignKey: "id",
+// 	as: "game_7",
+// });
 
-Week.hasOne(Game, {
-	foreignKey: "id",
-	as: "game_8",
-});
+// Week.hasOne(Game, {
+// 	foreignKey: "id",
+// 	as: "game_8",
+// });
 
-Week.hasOne(Game, {
-	foreignKey: "id",
-	as: "game_9",
-});
+// Week.hasOne(Game, {
+// 	foreignKey: "id",
+// 	as: "game_9",
+// });
 
-Week.hasOne(Game, {
-	foreignKey: "id",
-	as: "game_10",
-});
+// Week.hasOne(Game, {
+// 	foreignKey: "id",
+// 	as: "game_10",
+// });
 
 // Game associations
 Game.belongsToMany(Pick, {
+	through: UserWeekPick,
 	foreignKey: "game_id",
 });
 
 Game.hasOne(Team, {
 	foreignKey: "id",
-	as: "home",
 });
 
 Game.hasOne(Team, {
 	foreignKey: "id",
-	as: "away",
 });
 
 Game.belongsTo(Week, {
@@ -134,14 +133,17 @@ Game.belongsTo(Week, {
 
 // Team associations
 Team.belongsToMany(Game, {
+	through: UserWeekPick,
 	foreignKey: "home",
 });
 
 Team.belongsToMany(Game, {
+	through: UserWeekPick,
 	foreignKey: "away",
 });
 
 Team.belongsToMany(Pick, {
+	through: UserWeekPick,
 	foreignKey: "pick",
 });
 

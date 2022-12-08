@@ -11,4 +11,4 @@ const get_emoji = () => {
 	return `<span for="img" aria-label="book">${book}</span>`;
 };
 
-export { get_emoji };
+export default { get_emoji };
