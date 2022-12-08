@@ -1,6 +1,7 @@
-const router = require("express").Router();
-const { User } = require("../models");
-const withAuth = require("../utils/auth");
+import express from "express";
+const router = express.Router();
+import { User } from "../models";
+import withAuth from "../utils/auth";
 
 router.get("/", withAuth, async (req, res) => {
 	try {
@@ -29,4 +30,4 @@ router.get("/login", (req, res) => {
 	res.render("login");
 });
 
-module.exports = router;
+export default router;
