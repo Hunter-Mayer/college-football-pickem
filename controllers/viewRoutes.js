@@ -3,7 +3,9 @@ const router = express.Router();
 import { User } from "../models";
 import withAuth from "../utils/auth";
 
-router.get("/", withAuth, async (req, res) => {
+
+// replatce withAuth,
+router.get("/",  async (req, res) => {
 	try {
 		const userData = await User.findAll({
 			attributes: { exclude: ["password"] },
