@@ -15,7 +15,7 @@ Pick.belongsTo(Game);
 Team.hasMany(Pick, {
 	foreignKey: "pick",
 });
-Pick.belongsTo(Team);
+// Using Pick.belongsTo results in an additional id called team_id
 
 // Pick - User Model association
 User.hasMany(Pick, {

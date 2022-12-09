@@ -8,7 +8,7 @@
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"start": "node --experimental-modules --es-module-specifier-resolution=node server",
 		"dev": "npx nodemon server",
-		"seed": "node --experimental-modules --es-module-specifier-resolution=node seeds"
+		"seed": "node --experimental-modules --es-module-specifier-resolution=node seeds/seed.js"
 	},
 	"keywords": [],
 	"author": "",

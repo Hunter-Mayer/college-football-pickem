@@ -10,17 +10,12 @@ import weekData from "./weekData.json" assert { type: "json" };
 const seedDatabase = async () => {
 	await sequelize.sync({ force: true });
 
+	await User.bulkCreate(userData, {
+		individualHooks: true,
+		returning: true,
+	});
+
 	await Date.bulkCreate(dateData, {
-		individualHooks: true,
-		returning: true,
-	});
-
-	await Game.bulkCreate(gameData, {
-		individualHooks: true,
-		returning: true,
-	});
-
-	await Pick.bulkCreate(pickData, {
 		individualHooks: true,
 		returning: true,
 	});
@@ -30,12 +25,17 @@ const seedDatabase = async () => {
 		returning: true,
 	});
 
-	await User.bulkCreate(userData, {
+	await Game.bulkCreate(gameData, {
 		individualHooks: true,
 		returning: true,
 	});
 
 	await Week.bulkCreate(weekData, {
+		individualHooks: true,
+		returning: true,
+	});
+
+	await Pick.bulkCreate(pickData, {
 		individualHooks: true,
 		returning: true,
 	});
