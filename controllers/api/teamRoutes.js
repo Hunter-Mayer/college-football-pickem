@@ -29,8 +29,15 @@ router.post("/", async (req, res) => {
 	 * logo: "url to picture of logo"
 	 * */
 	try {
-		const newTeam = await Team.create(req.body);
-		req.status(201).json(newTeam).send();
+		// For just one team
+		if (!req.body.length) {
+			const newTeam = await Team.create(req.body);
+			res.status(201).json(newTeam).send();
+		} else {
+			// For multiple teams
+			const newTeams = await Team.bulkCreate(req.body);
+			res.status(201).json(newTeams).send();
+		}
 	} catch (err) {
 		if (err instanceof Sequelize.ValidationError) {
 			res.status(400).send(`<h1>400 Bad Request!</h1>
