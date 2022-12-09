@@ -1,1 +1,42 @@
-[]
+[
+	{
+		"week_num": "2",
+		"game_id": 1
+	},
+	{
+		"week_num": "2",
+		"game_id": 2
+	},
+	{
+		"week_num": "2",
+		"game_id": 3
+	},
+	{
+		"week_num": "2",
+		"game_id": 4
+	},
+	{
+		"week_num": "2",
+		"game_id": 5
+	},
+	{
+		"week_num": "2",
+		"game_id": 6
+	},
+	{
+		"week_num": "2",
+		"game_id": 7
+	},
+	{
+		"week_num": "2",
+		"game_id": 8
+	},
+	{
+		"week_num": "2",
+		"game_id": 9
+	},
+	{
+		"week_num": "2",
+		"game_id": 10
+	}
+]
