@@ -15,6 +15,10 @@ Team.init(
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
+		mascot: {
+			type: DataTypes.STRING,
+			allowNull: false,
+		}
 		// Link to Sports Team Logo
 		logo: {
 			type: DataTypes.STRING,

@@ -1,86 +1,102 @@
 [
-    {
-        "name": "Alabama",
-        "logo:":
-    },
-    {
-        "name": ,
-        "logo:":
-    },
-    {
-        "name": ,
-        "logo:":
-    },
-    {
-        "name": ,
-        "logo:":
-    },
-    {
-        "name": ,
-        "logo:":
-    },
-    {
-        "name": ,
-        "logo:":
-    },
-    {
-        "name": ,
-        "logo:":
-    },
-    {
-        "name": ,
-        "logo:":
-    },
-    {
-        "name": ,
-        "logo:":
-    },
-    {
-        "name": ,
-        "logo:":
-    },
-    {
-        "name": ,
-        "logo:":
-    },
-    {
-        "name": ,
-        "logo:":
-    },
-    {
-        "name": ,
-        "logo:":
-    },
-    {
-        "name": ,
-        "logo:":
-    },
-    {
-        "name": ,
-        "logo:":
-    },
-    {
-        "name": ,
-        "logo:":
-    },
-    {
-        "name": ,
-        "logo:":
-    },
-    {
-        "name": ,
-        "logo:":
-    },
-    {
-        "name": ,
-        "logo:":
-    },
-    {
-        "name": ,
-        "logo:":
-    },
-    {
-        "name": ,
-        "logo:":
-    }
+	{
+		"name": "Alabama",
+		"mascot": "Crimson Tide",
+		"logo:": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/333.png&h=200&w=200"
+	},
+	{
+		"name": "Texas",
+		"mascot": "Longhorns",
+		"logo:": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/251.png&h=200&w=200"
+	},
+	{
+		"name": "Texas A&M",
+		"mascot": "Aggies",
+		"logo:": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/245.png&h=200&w=200"
+	},
+	{
+		"name": "Appalachian State",
+		"mascot": "Mountaineers",
+		"logo:": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/2026.png&h=200&w=200"
+	},
+	{
+		"name": "Baylor",
+		"mascot": "Bears",
+		"logo:": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/239.png&h=200&w=200"
+	},
+	{
+		"name": "BYU",
+		"mascot": "Cougars",
+		"logo:": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/252.png&h=200&w=200"
+	},
+	{
+		"name": "USC",
+		"mascot": "Trojans",
+		"logo:": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/30.png&h=200&w=200"
+	},
+	{
+		"name": "Stanford",
+		"mascot": "Cardinal",
+		"logo:": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/24.png&h=200&w=200"
+	},
+	{
+		"name": "Tennessee",
+		"mascot": "Volunteers",
+		"logo:": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/2633.png&h=200&w=200"
+	},
+	{
+		"name": "Pittsburgh",
+		"mascot": "Panthers",
+		"logo:": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/221.png&h=200&w=200"
+	},
+	{
+		"name": "South Carolina",
+		"mascot": "Gamecocks",
+		"logo:": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/2579.png&h=200&w=200"
+	},
+	{
+		"name": "Arkansas",
+		"mascot": "Razorbacks",
+		"logo:": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/8.png&h=200&w=200"
+	},
+	{
+		"name": "Hawai'i",
+		"mascot": "Rainbow Warriors",
+		"logo:": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/62.png&h=200&w=200"
+	},
+	{
+		"name": "Michigan",
+		"mascot": "Wolverines",
+		"logo:": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/130.png&h=200&w=200"
+	},
+	{
+		"name": "Arkansas State",
+		"mascot": "Red Wolves",
+		"logo:": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/2032.png&h=200&w=200"
+	},
+	{
+		"name": "Ohio State",
+		"mascot": "Buckeyes",
+		"logo:": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/194.png&h=200&w=200"
+	},
+	{
+		"name": "Washington State",
+		"mascot": "Cougars",
+		"logo:": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/265.png&h=200&w=200"
+	},
+	{
+		"name": "Wisconsin",
+		"mascot": "Badgers",
+		"logo:": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/275.png&h=200&w=200"
+	},
+	{
+		"name": "Arizona State",
+		"mascot": "Sun Devils",
+		"logo:": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/9.png&h=200&w=200"
+	},
+	{
+		"name": "Oklahoma State",
+		"mascot": "Cowboys",
+		"logo:": "https://a.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/197.png&h=200&w=200"
+	}
 ]
