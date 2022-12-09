@@ -1,8 +1,11 @@
-const router = require("express").Router();
-const { User } = require("../models");
-const withAuth = require("../utils/auth");
+import express from "express";
+const router = express.Router();
+import { User } from "../models";
+import withAuth from "../utils/auth";
 
-router.get("/", withAuth, async (req, res) => {
+
+// replatce withAuth,
+router.get("/",  async (req, res) => {
 	try {
 		const userData = await User.findAll({
 			attributes: { exclude: ["password"] },
@@ -29,4 +32,12 @@ router.get("/login", (req, res) => {
 	res.render("login");
 });
 
-module.exports = router;
+router.get("/teampicker", (req, res) => {
+	res.render("teampicker");
+});
+
+router.get("/scoreboard", (req, res) => {
+	res.render("scoreboard");
+});
+
+export default router;
