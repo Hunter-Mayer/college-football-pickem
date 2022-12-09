@@ -3,6 +3,7 @@
 	"version": "1.0.0",
 	"description": "interactive site to host a college football pickem league",
 	"main": "server.js",
+	"type": "module",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"start": "node --experimental-modules --es-module-specifier-resolution=node server",
