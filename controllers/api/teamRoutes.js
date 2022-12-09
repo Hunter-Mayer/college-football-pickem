@@ -28,6 +28,7 @@ router.post("/", async (req, res) => {
 	 * mascot: "mascot_name",
 	 * logo: "url to picture of logo"
 	 * */
+    // TODO: Implement checking for already existing teams
 	try {
 		// For just one team
 		if (!req.body.length) {
