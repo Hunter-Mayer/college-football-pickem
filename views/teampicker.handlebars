@@ -5,18 +5,18 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">{{gameID}}</h5>
-                    <p>Choose The Winning Team:</p>
-
+                    <p>Choose The Winning Team: {{picks}}</p>
+    
                     <form>
                         <input type="radio" id="homeTeam" name="homeTeam" value="Team 1">
-                        <label for="homeTeam">{{homeTeam}}</label><br>
+                        <label for="homeTeam">{{home_team}}</label><br>
                         <input type="radio" id="awayTeam" name="awayTeam" value="Team 2">
-                        <label for="css">{{awayTeam}}</label><br>
+                        <label for="css">{{away_team}}</label><br>
                     </form>
                     <form>
                         <div class="form-row align-items-center">
                             <div class="col-auto my-1">
-                                <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Points</label>
+                                <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">{{Points}}</label>
                                 <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
                                     <option selected>--</option>
                                     <option value="1">One</option>
@@ -39,6 +39,8 @@
                 </div>
             </div>
         </div>
+{{/each}}
+
 
     {{!-- Just for the template --}}
     <div class="col">
