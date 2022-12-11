@@ -61,7 +61,7 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/user/:user_id", async (req, res) => {
-	userAssociations.where = { user_id: req.params.user_id };
+	userAssociations.where = { id: req.params.user_id };
 	try {
 		const picks = await Pick.findAll({
 			attributes: ["id", "points"],
@@ -88,8 +88,8 @@ router.get("/week/:week_num", async (req, res) => {
 	}
 });
 
-router.get("/user/:user_id/week/:week_id", async (req, res) => {
-	userAssociations.where = { user_id: req.params.user_id };
+router.get("/user/:user_id/week/:week_num", async (req, res) => {
+	userAssociations.where = { id: req.params.user_id };
 	gameAssociations.include[3].where = {
 		week_num: req.params.week_num,
 	};
