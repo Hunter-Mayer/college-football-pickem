@@ -36,14 +36,15 @@ router.get("/login", (req, res) => {
 
 router.get("/teampicker", (req, res) => {
 	const currentPicks = SI.getWeeklyPickForm(1, 1, 2022);
-	//console.log(currentPicks);
 	res.render("teampicker", {
-		currentPicks,
+		currentPicks: SI.getWeeklyPickForm(1, 1, 2023),
 	});
 });
 
 router.get("/scoreboard", (req, res) => {
-	res.render("scoreboard");
+	res.render("scoreboard", {
+		picks: SI.getWeeklyScoreboard(1, 2023),
+	});
 });
 
 // TODO: Implement route and handlebar site. Stretch Goal
