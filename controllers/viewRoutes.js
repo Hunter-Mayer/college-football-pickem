@@ -41,7 +41,14 @@ router.get("/teampicker", (req, res) => {
 });
 
 router.get("/scoreboard", (req, res) => {
-	res.render("scoreboard");
+	res.render("scoreboard", {
+		picks: SI.getWeeklyScoreboard(1, 2023),
+	});
+});
+
+// TODO: Implement route and handlebar site. Stretch Goal
+router.get("/statistics", (req, res) => {
+	res.render("statistics");
 });
 
 export default router;
