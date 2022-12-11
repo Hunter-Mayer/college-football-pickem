@@ -35,9 +35,8 @@ router.get("/login", (req, res) => {
 });
 
 router.get("/teampicker", (req, res) => {
-	const currentPicks = SI.getWeeklyPickForm(1, 1, 2022);
 	res.render("teampicker", {
-		currentPicks: SI.getWeeklyPickForm(1, 1, 2023),
+		games: SI.getWeeklyPickForm(1, 1, 2023),
 	});
 });
 

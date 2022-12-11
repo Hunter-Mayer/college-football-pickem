@@ -1,22 +1,22 @@
 <h1>Team Picker</h1>
-{{#each game}}
+{{#each games as |game|}}
     <div class="row row-cols-3 row-cols-md-3 row-cols-sm-1 g-4">
         <div class="col">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">{{gameID}}</h5>
-                    <p>Choose The Winning Team:</p>
-
+                    <h5 class="card-title">GAME!</h5>
+                    <p>Choose The Winning Team: {{pick}}</p>
+    
                     <form>
                         <input type="radio" id="homeTeam" name="homeTeam" value="Team 1">
-                        <label for="homeTeam">{{homeTeam}}</label><br>
+                        <label for="homeTeam">{{home_team}}</label><br>
                         <input type="radio" id="awayTeam" name="awayTeam" value="Team 2">
-                        <label for="css">{{awayTeam}}</label><br>
+                        <label for="css">{{away_team}}</label><br>
                     </form>
                     <form>
                         <div class="form-row align-items-center">
                             <div class="col-auto my-1">
-                                <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Points</label>
+                                <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">{{points}}</label>
                                 <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
                                     <option selected>--</option>
                                     <option value="1">One</option>
@@ -39,6 +39,9 @@
                 </div>
             </div>
         </div>
+    </div>
+{{/each}}
+
 
     {{!-- Just for the template --}}
     <div class="col">
