@@ -1,6 +1,6 @@
 import express from "express";
 const router = express.Router();
-import { Game, Pick, Team, User, Date, Week } from "../../models";
+import { Game, Pick, Team, User, Date, Week } from "../../../models";
 
 let gameAssociations = {
 	model: Game,
@@ -104,24 +104,5 @@ router.get("/user/:user_id/week/:week_num", async (req, res) => {
 		res.status(500).send(`<h1>500 Internal Server Error</h1>`);
 	}
 });
-
-router.post("/", async (req, res) => {
-	try {
-	} catch (err) {
-		console.error(err);
-		res.status(500).send(`<h1>500 Internal Server Error</h1>`);
-	}
-});
-
-router.put("/", async (req, res) => {
-	try {
-	} catch (err) {
-		console.error(err);
-		res.status(500).send(`<h1>500 Internal Server Error</h1>`);
-	}
-});
-
-// TODO?
-// router.delete("/", async (req, res) => {});
 
 export default router;
