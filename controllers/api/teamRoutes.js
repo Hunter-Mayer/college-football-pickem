@@ -28,7 +28,7 @@ router.post("/", async (req, res) => {
 	 * mascot: "mascot_name",
 	 * logo: "url to picture of logo"
 	 * */
-	// TODO: Implement checking for already existing teams to prevent duplication with team names. Or... add validation to the model and error handling here for duplicate teams
+	// TODO: Handle error for when unique name constraint is not met
 	try {
 		// For just one team
 		if (!req.body.length) {
