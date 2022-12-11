@@ -38,4 +38,9 @@ router.get("/scoreboard", (req, res) => {
 	res.render("scoreboard");
 });
 
+// TODO: Implement route and handlebar site. Stretch Goal
+router.get("/statistics", (req, res) => {
+	res.render("statistics");
+});
+
 export default router;
