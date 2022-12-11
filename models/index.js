@@ -9,39 +9,57 @@ import Date from "./date";
 Game.hasMany(Pick, {
 	foreignKey: "game_id",
 });
-Pick.belongsTo(Game);
+Pick.belongsTo(Game, {
+	foreignKey: "game_id",
+});
 
 // Pick - Team Model association
 Team.hasMany(Pick, {
 	foreignKey: "pick",
 });
-// Using Pick.belongsTo results in an additional id called team_id
+Pick.belongsTo(Team, {
+	foreignKey: "pick",
+});
 
 // Pick - User Model association
 User.hasMany(Pick, {
 	foreignKey: "user_id",
 });
-Pick.belongsTo(User);
+Pick.belongsTo(User, {
+	foreignKey: "user_id",
+});
 
 // Game - Team Model association
 Team.hasMany(Game, {
-	foreignKey: "home_team",
+	foreignKey: "home_team_id",
 });
+Game.belongsTo(Team, {
+	foreignKey: "home_team_id",
+	as: "home_team",
+});
+
 Team.hasMany(Game, {
-	foreignKey: "away_team",
+	foreignKey: "away_team_id",
 });
-// Using Game.belongsTo results in duplicate foreign keys or association conflicts between the keys
+Game.belongsTo(Team, {
+	foreignKey: "away_team_id",
+	as: "away_team",
+});
 
 // Game - Date Model association
 Date.hasMany(Game, {
 	foreignKey: "date_id",
 });
-Game.belongsTo(Date);
+Game.belongsTo(Date, {
+	foreignKey: "date_id",
+});
 
 // Week - Game Model association
 Game.hasMany(Week, {
 	foreignKey: "game_id",
 });
-Week.belongsTo(Game);
+Week.belongsTo(Game, {
+	foreignKey: "game_id",
+});
 
 export { Pick, Game, Week, User, Team, Date };
