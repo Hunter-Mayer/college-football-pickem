@@ -21,7 +21,7 @@ Pick.init(
 				key: "id",
 			},
 		},
-		pick: {
+		team_pick_id: {
 			type: DataTypes.INTEGER,
 			references: {
 				model: Team,

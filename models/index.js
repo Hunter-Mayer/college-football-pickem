@@ -15,10 +15,11 @@ Pick.belongsTo(Game, {
 
 // Pick - Team Model association
 Team.hasMany(Pick, {
-	foreignKey: "pick",
+	foreignKey: "team_pick_id",
 });
 Pick.belongsTo(Team, {
-	foreignKey: "pick",
+	foreignKey: "team_pick_id",
+	as: "picked_team",
 });
 
 // Pick - User Model association
