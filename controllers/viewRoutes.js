@@ -1,9 +1,13 @@
 import express from "express";
 const router = express.Router();
 import { User } from "../models";
+import ServerInterface from "../lib/serverInterface";
 import withAuth from "../utils/auth";
 
-router.get("/", withAuth, async (req, res) => {
+const SI = new ServerInterface();
+
+// replatce withAuth,
+router.get("/", async (req, res) => {
 	try {
 		const userData = await User.findAll({
 			attributes: { exclude: ["password"] },
@@ -31,7 +35,11 @@ router.get("/login", (req, res) => {
 });
 
 router.get("/teampicker", (req, res) => {
-	res.render("teampicker");
+	const currentPicks = SI.getWeeklyPickForm(1, 1, 2022);
+	//console.log(currentPicks);
+	res.render("teampicker", {
+		currentPicks,
+	});
 });
 
 router.get("/scoreboard", (req, res) => {

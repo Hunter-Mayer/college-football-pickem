@@ -1,1 +1,73 @@
 <h1>Scoreboard</h1>
+<div class="dropdown">
+  <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Dropdown button
+  </button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="#">Action</a></li>
+    <li><a class="dropdown-item" href="#">Another action</a></li>
+    <li><a class="dropdown-item" href="#">Something else here</a></li>
+  </ul>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Game 1</th>
+      <th scope="col">Game 2</th>
+      <th scope="col">Game 3</th>
+      <th scope="col">Game 4</th>
+      <th scope="col">Game 5</th>
+      <th scope="col">Game 6</th>
+      <th scope="col">Game 7</th>
+      <th scope="col">Game 8</th>
+      <th scope="col">Game 9</th>
+      <th scope="col">Game 10</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{!-- {{#each user}} --}}
+    <tr>
+        {{!-- Handlebars name --}}
+      <th scope="row">{{name}}</th>
+      <td>{{pick}}:{{points}}</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+      <td>Mark</td>
+    </tr>
+    {{!-- {{/each}} --}}
+    <tr>
+        Week 1 Picks
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+      <td>Jacob</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+      <td>Jacob</td>
+    </tr>
+  </tbody>
+</table>
