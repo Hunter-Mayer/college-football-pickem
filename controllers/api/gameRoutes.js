@@ -1,33 +1,33 @@
 import express from "express";
 const router = express.Router();
-import { Game, Team, Date } from "../../models";
+import { Game, Team, Date, Week } from "../../models";
+
+const gameAssociations = [
+	{
+		model: Date,
+		attributes: { exclude: ["createdAt", "updatedAt"] },
+	},
+	{
+		model: Team,
+		as: "home_team",
+		attributes: { exclude: ["createdAt", "updatedAt"] },
+	},
+	{
+		model: Team,
+		as: "away_team",
+		attributes: { exclude: ["createdAt", "updatedAt"] },
+	},
+	{
+		model: Week,
+		attributes: ["id", "week_num"],
+	},
+];
 
 router.get("/", async (req, res) => {
 	try {
 		const games = await Game.findAll({
 			attributes: ["id"],
-			include: [
-				{
-					model: Date,
-					attributes: {
-						exclude: ["createdAt", "updatedAt"],
-					},
-				},
-				{
-					model: Team,
-					as: "home_team",
-					attributes: {
-						exclude: ["createdAt", "updatedAt"],
-					},
-				},
-				{
-					model: Team,
-					as: "away_team",
-					attributes: {
-						exclude: ["createdAt", "updatedAt"],
-					},
-				},
-			],
+			include: gameAssociations,
 		});
 		res.status(200).json(games).send();
 	} catch (err) {
