@@ -6,9 +6,9 @@
 	"type": "module",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "node --experimental-modules --es-module-specifier-resolution=node server",
-		"dev": "npx nodemon server",
-		"seed": "node --experimental-modules --es-module-specifier-resolution=node seeds/seed.js"
+		"start": "clear && node --experimental-modules --es-module-specifier-resolution=node server",
+		"dev": "clear && npx nodemon server",
+		"seed": "clear && node --experimental-modules --es-module-specifier-resolution=node seeds/seed.js"
 	},
 	"keywords": [],
 	"author": "",

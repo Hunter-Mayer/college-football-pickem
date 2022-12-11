@@ -14,6 +14,7 @@ Team.init(
 		name: {
 			type: DataTypes.STRING,
 			allowNull: false,
+			unique: true,
 		},
 		mascot: {
 			type: DataTypes.STRING,
