@@ -1,16 +1,16 @@
 export default class Date {
-	dateDatabaseURL = new URL("/api/dates");
+	baseURL = "/api/date";
+	dateDatabaseURL = new URL(baseURL);
 
-	constructor(year, month, day) {
+	constructor(year, month, day, id = null) {
 		this.year = year;
 		this.month = month;
 		this.day = day;
 
-		this.id = null;
+		this.id = id;
 	}
 
 	async create() {
-		// TODO: Create date entry in the database
 		const res = await fetch(this.dateDatabaseURL, {
 			method: "POST",
 			body: JSON.stringify(this.getDate()),
@@ -22,6 +22,16 @@ export default class Date {
 		} else {
 			alert("Failed to create date!");
 		}
+
+		this.resetURL();
+	}
+
+	// Fetch defaults to get request
+	async get() {
+		this.dateDatabaseURL.pathname += `/${this.id}`;
+		const res = (await fetch(this.dateDatabaseURL)).json();
+		this.resetURL();
+		return res;
 	}
 
 	getDate() {
@@ -30,5 +40,9 @@ export default class Date {
 
 	toString() {
 		return `${this.month}/${this.day}/${this.year}`;
+	}
+
+	resetURL() {
+		this.dateDatabaseURL = new URL(baseURL);
 	}
 }
