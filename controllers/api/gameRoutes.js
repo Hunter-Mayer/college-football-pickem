@@ -61,4 +61,33 @@ router.post("/", async (req, res) => {
 	}
 });
 
+router.put("/:id/winner/:team_id", async (req, res) => {
+	const gameIds = (await Game.findAll({ attributes: ["id"] })).map(
+		(element) => element.dataValues.id
+	);
+
+	if (gameIds.includes(Number(req.params.id))) {
+		try {
+			const updatedGame = await Game.update(
+				{ winner_team_id: req.params.team_id },
+				{ where: { id: req.params.id } }
+			);
+
+			// If sequelize successfully updates the database, the length of updatedGame will be 1
+			if (updatedGame[0]) {
+				res.sendStatus(204);
+			} else {
+				res.sendStatus(304);
+			}
+		} catch (err) {
+			console.error(err);
+			res.status(500).send(`<h1>500 Internal Server Error</h1>`);
+		}
+	} else {
+		res.status(400).send(
+			`<h1>400 Bad Request. game_id does not exist</h1>`
+		);
+	}
+});
+
 export default router;
