@@ -1,6 +1,6 @@
 import express from "express";
 const router = express.Router();
-import { Game, Pick, Team, User, Date, Week } from "../../../models";
+import { Pick } from "../../../models";
 
 /**
  * USES QUERY PARAMETERS
