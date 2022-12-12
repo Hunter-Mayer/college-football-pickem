@@ -1,11 +1,13 @@
 import express from "express";
 const router = express.Router();
 import { User } from "../models";
+import ServerInterface from "../lib/serverInterface";
 import withAuth from "../utils/auth";
 
+const SI = new ServerInterface();
 
 // replatce withAuth,
-router.get("/",  async (req, res) => {
+router.get("/", async (req, res) => {
 	try {
 		const userData = await User.findAll({
 			attributes: { exclude: ["password"] },
@@ -33,11 +35,20 @@ router.get("/login", (req, res) => {
 });
 
 router.get("/teampicker", (req, res) => {
-	res.render("teampicker");
+	res.render("teampicker", {
+		games: SI.getWeeklyPickForm(1, 1, 2023),
+	});
 });
 
 router.get("/scoreboard", (req, res) => {
-	res.render("scoreboard");
+	res.render("scoreboard", {
+		picks: SI.getWeeklyScoreboard(1, 2023),
+	});
+});
+
+// TODO: Implement route and handlebar site. Stretch Goal
+router.get("/statistics", (req, res) => {
+	res.render("statistics");
 });
 
 export default router;

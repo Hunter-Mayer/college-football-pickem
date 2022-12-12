@@ -14,7 +14,7 @@ Game.init(
 			primaryKey: true,
 			autoIncrement: true,
 		},
-		home_team: {
+		home_team_id: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			references: {
@@ -22,9 +22,18 @@ Game.init(
 				key: "id",
 			},
 		},
-		away_team: {
+		away_team_id: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
+			references: {
+				model: Team,
+				key: "id",
+			},
+		},
+		winner_team_id: {
+			type: DataTypes.INTEGER,
+			allowNull: true,
+			defaultValue: null,
 			references: {
 				model: Team,
 				key: "id",
