@@ -37,6 +37,25 @@ router.get("/", async (req, res) => {
 	}
 });
 
+router.get("/:id", async (req, res) => {
+	try {
+		const game = await Game.findByPk(req.params.id, {
+			attributes: ["id"],
+			include: gameAssociations,
+		});
+		if (game) {
+			res.status(200).json(game).send();
+		} else {
+			res.status(400).send(
+				`<h1>400 Bad Request</h1><h3>Specified ID does not exist</h3>`
+			);
+		}
+	} catch (err) {
+		console.error(err);
+		res.status(500).send(`<h1>500 Internal Server Error</h1>`);
+	}
+});
+
 router.post("/", async (req, res) => {
 	// Create a new game
 	/**
@@ -85,7 +104,7 @@ router.put("/:id/winner/:team_id", async (req, res) => {
 		}
 	} else {
 		res.status(400).send(
-			`<h1>400 Bad Request. game_id does not exist</h1>`
+			`<h1>400 Bad Request</h1><h3>Specified ID does not exist</h3>`
 		);
 	}
 });
