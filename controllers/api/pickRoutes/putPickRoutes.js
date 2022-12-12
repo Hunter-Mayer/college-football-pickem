@@ -2,7 +2,10 @@ import express from "express";
 const router = express.Router();
 import { Game, Pick, Team, User, Date, Week } from "../../../models";
 
-// Uses query parameters...
+/**
+ * USES QUERY PARAMETERS
+ * ONLY UPDATES THE PICKED TEAM AND THE AMOUNT OF POINTS
+ */
 router.put("/", async (req, res) => {
 	/**
 	 * req.query.id
