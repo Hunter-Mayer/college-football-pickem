@@ -30,6 +30,15 @@ Game.init(
 				key: "id",
 			},
 		},
+		winner_team_id: {
+			type: DataTypes.INTEGER,
+			allowNull: true,
+			defaultValue: null,
+			references: {
+				model: Team,
+				key: "id",
+			},
+		},
 		date_id: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
