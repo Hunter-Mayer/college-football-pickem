@@ -1,5 +1,6 @@
 import express from "express";
 const router = express.Router();
+import { Sequelize } from "sequelize";
 import { Week, Game, Date, Team, Pick, User } from "../../models";
 
 const weekAssociations = [
@@ -37,6 +38,22 @@ router.get("/", async (req, res) => {
 			include: weekAssociations,
 		});
 		res.status(200).json(weekData).send();
+	} catch (err) {
+		console.error(err);
+		res.status(500).send(`<h1>500 Internal Server Error</h1>`);
+	}
+});
+
+router.get("/all-week-nums", async (req, res) => {
+	try {
+		const weekNums = await Week.findAll({
+			attributes: [
+				Sequelize.fn("DISTINCT", Sequelize.col("week_num")),
+				"week_num",
+			],
+			order: [["week_num", "DESC"]],
+		});
+		res.status(200).json(weekNums).send();
 	} catch (err) {
 		console.error(err);
 		res.status(500).send(`<h1>500 Internal Server Error</h1>`);
