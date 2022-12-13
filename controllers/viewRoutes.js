@@ -18,6 +18,7 @@ router.get("/", async (req, res) => {
 
 		res.render("homepage", {
 			users,
+			data: SI.getSeasonData(),
 			logged_in: req.session.logged_in,
 		});
 	} catch (err) {
