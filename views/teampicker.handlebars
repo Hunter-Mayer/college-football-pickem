@@ -3,7 +3,7 @@
 <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
     {{#each games as |game|}}
     <div class="">
-        <div class="card">
+        <div class="card border-dark">
             <div class="card-body">
                 <h5 class="card-title">GAME! {{!-- add game id here?--}}</h5>
                 <p>Choose The Winning Team & Wager Your Points: </p>
@@ -47,37 +47,5 @@
     {{/each}}
 </div>
 
-{{!-- Just for the template
-<div class="col">
-    <div class="card">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
-                content. This content is a little bit longer.</p>
-        </div>
-    </div>
-</div>
-<div class="col">
-    <div class="card">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
-                content.</p>
-        </div>
-    </div>
-</div>
-<div class="col">
-    <div class="card">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
-                content. This content is a little bit longer.</p>
-        </div>
-    </div>
-</div>
-</div> --}}
 {{!TODO: Add script for handling teampicker API calls}}
 <script src="/js/teampicker.js"></script>
