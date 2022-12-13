@@ -46,6 +46,16 @@ router.get("/", async (req, res) => {
 	}
 });
 
+router.get("/weeklyScoreboard", (req, res) => {
+	try {
+		const scores = serverInterface.getWeeklyScoreboard()
+		console.log(scores)
+		res.json (scores)	
+	} catch(error){
+		console.log(error)
+	}
+	
+
 router.get("/:week_num", async (req, res) => {
 	try {
 		const weekData = await Week.findAll({
@@ -61,15 +71,6 @@ router.get("/:week_num", async (req, res) => {
 		res.status(500).send(`<h1>500 Internal Server Error</h1>`);
 	}
 });
-
-router.get("/weeklyScoreboard", (req, res) => {
-	try {
-		const scores = (serverInterface.getWeeklyScoreboard())
-		res.json (scores)	
-	} catch(error){
-		console.log(error)
-	}
-	
 })
 
 export default router;
