@@ -6,14 +6,15 @@
 		data-bs-toggle="dropdown"
 		aria-expanded="false"
 	>
-		Dropdown button
+		{{! TODO: Add javascript to add default name to selected week}}
 	</button>
-	<ul class="dropdown-menu">
+	<ul class="dropdown-menu weeks">
 		{{! List of available weeks in DESCENDING ORDER }}
 		{{#each weeks as |week|}}
 			<li>
 				<a class="dropdown-item week-num" href="#">
-					Week {{week.week_num}}
+					Week
+					{{week.week_num}}
 				</a>
 			</li>
 		{{/each}}
