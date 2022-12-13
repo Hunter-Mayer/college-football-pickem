@@ -1,6 +1,9 @@
 import express from "express";
 const router = express.Router();
 import { Week, Game, Date, Team, Pick, User } from "../../models";
+import ServerInterface from "../../lib/serverInterface";
+
+const serverInterface = new ServerInterface()
 
 const weekAssociations = [
 	{
@@ -58,5 +61,15 @@ router.get("/:week_num", async (req, res) => {
 		res.status(500).send(`<h1>500 Internal Server Error</h1>`);
 	}
 });
+
+router.get("/weeklyScoreboard", (req, res) => {
+	try {
+		const scores = (serverInterface.getWeeklyScoreboard())
+		res.json (scores)	
+	} catch(error){
+		console.log(error)
+	}
+	
+})
 
 export default router;
