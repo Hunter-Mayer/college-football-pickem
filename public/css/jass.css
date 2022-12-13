@@ -1706,3 +1706,10 @@ label form [type="radio"] {
 	}
 }
 
+.card {
+	font-family: 'Trocchi', serif;
+}
+
+#teamPicker {
+	font-family: 'Trocchi', serif;
+}
