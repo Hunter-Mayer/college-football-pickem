@@ -61,15 +61,12 @@ const signupFormHandler = async (event) => {
 			method: "POST",
 			body: JSON.stringify({ name, email, password }),
 			headers: { "Content-Type": "application/json" },
-			redirect: "follow",
 		});
 
 		if (!response.ok) {
 			alert("Failed to sign up");
 		} else {
-			window.location.reload();
-			console.log(response);
-			//window.location.href = "/";
+			window.location.href = "/";
 		}
 	}
 };

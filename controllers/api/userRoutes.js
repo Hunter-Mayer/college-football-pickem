@@ -27,9 +27,9 @@ router.post("/login", async (req, res) => {
 		req.session.save(() => {
 			req.session.user_id = userData.id;
 			req.session.logged_in = true;
-			//res.json({ user: userData, message: "You are now logged in!" });
+
+			res.json({ user: userData, message: "You are now logged in!" });
 		});
-		res.status(200).send();
 	} catch (err) {
 		res.status(400).send();
 	}
@@ -61,9 +61,9 @@ router.post("/signup", async (req, res) => {
 		req.session.save(() => {
 			req.session.user_id = newUser.id;
 			req.session.logged_in = true;
-		});
 
-		res.sendStatus(201);
+			res.json({ user: userData, message: "You are now logged in!" });
+		});
 	} catch (err) {
 		console.log(err);
 		res.status(400).send();
