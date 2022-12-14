@@ -78,9 +78,26 @@ router.get("/login", (req, res) => {
 	res.render("login");
 });
 
-router.get("/teampicker", (req, res) => {
+router.get("/teampicker", async (req, res) => {
+	let games;
+	try {
+		const week = await Week.findOne({
+			attributes: ["week_num"],
+			order: [["week_num", "DESC"]],
+		});
+
+		gameAssociations.include[3].where = { week_num: week };
+		games = await Pick.findAll({
+			attributes: ["id", "points"],
+			include: [gameAssociations, userAssociations, teamPickAssociations],
+		});
+	} catch (err) {
+		console.error(err);
+		res.status(500).send(`<h1>500 Internal Server Error</h1>`);
+	}
+
 	res.render("teampicker", {
-		games: SI.getWeeklyPickForm(1, 1, 2023),
+		games: games,
 	});
 });
 
