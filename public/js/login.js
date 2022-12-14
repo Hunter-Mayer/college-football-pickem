@@ -35,8 +35,6 @@ const signupFormHandler = async (event) => {
 		.querySelector("#confirmPassword-signup")
 		.value.trim();
 
-	console.log(name, email, password, confirmPassword);
-
 	// Form Entry Validation
 	let alertMessage = "";
 	if (!name) {
@@ -58,24 +56,20 @@ const signupFormHandler = async (event) => {
 	if (alertMessage.length !== 0) {
 		alert(alertMessage);
 	} else {
+		// TODO: Implement error handling for bad requests
 		const response = await fetch("/api/users/signup", {
 			method: "POST",
 			body: JSON.stringify({ name, email, password }),
 			headers: { "Content-Type": "application/json" },
+			redirect: "follow",
 		});
-		
-		console.log(response);
 
 		if (!response.ok) {
 			alert("Failed to sign up");
 		} else {
-			// Setting the document URL doesn't allow the server to render the page with the new login status...
-			const response = await fetch("/", {
-				method: "GET",
-				headers: { "Content-Type": "text/html" },
-			});
-
+			window.location.reload();
 			console.log(response);
+			//window.location.href = "/";
 		}
 	}
 };
