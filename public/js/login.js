@@ -11,10 +11,13 @@ const loginFormHandler = async (event) => {
 			headers: { "Content-Type": "application/json" },
 		});
 
-		if (response.ok) {
-			document.location.replace("/");
-		} else {
-			alert("Failed to log in");
+		// if (response.ok) {
+		// 	document.location.replace("/");
+		// } else {
+		// 	alert("Failed to log in");
+		// }
+		if (!response.ok) {
+			alert("Failed to sign up");
 		}
 	}
 };
@@ -59,16 +62,11 @@ const signupFormHandler = async (event) => {
 			body: JSON.stringify({ name, email, password }),
 			headers: { "Content-Type": "application/json" },
 		});
-		const userData = await response.json();
-		console.log(await userData);
+		// const userData = await response.json();
+		// console.log(await userData);
 		if (!response.ok) {
 			alert("Failed to sign up");
 		}
-		// if (response.ok) {
-		// 	document.location.replace("/");
-		// } else {
-		// 	alert("Failed to sign up");
-		// }
 	}
 };
 

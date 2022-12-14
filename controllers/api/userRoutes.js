@@ -58,7 +58,10 @@ router.post("/signup", async (req, res) => {
 		}
 		const newUser = await User.create(req.body);
 		res.status(200).json(newUser).send();
-	} catch (error) {}
+		res.redirect("/homepage");
+	} catch (err) {
+		res.status(400).json(err).send();
+	}
 });
 
 export default router;
