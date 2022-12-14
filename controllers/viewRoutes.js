@@ -97,6 +97,7 @@ router.get("/scoreboard", async (req, res) => {
 
 	gameAssociations.include[3].where = { week_num: weeks[0] };
 	const pickData = await Pick.findAll({
+		attributes: ["id", "points"],
 		include: [gameAssociations, userAssociations, teamPickAssociations],
 	});
 
