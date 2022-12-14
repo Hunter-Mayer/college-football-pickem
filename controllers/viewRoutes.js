@@ -72,10 +72,9 @@ router.get("/", async (req, res) => {
 
 router.get("/login", (req, res) => {
 	if (req.session.logged_in) {
-		res.redirect("/");
+		res.redirect("../");
 		return;
 	}
-
 	res.render("login");
 });
 
@@ -111,9 +110,9 @@ router.get("/scoreboard", async (req, res) => {
 	});
 });
 
-// TODO: Implement route and handlebar site. Stretch Goal
-router.get("/statistics", (req, res) => {
-	res.render("statistics");
-});
+// TODO: Implement route and handlebar site. Stretch Goal. Leave commented unless implemented
+// router.get("/statistics", (req, res) => {
+// 	res.render("statistics");
+// });
 
 export default router;
