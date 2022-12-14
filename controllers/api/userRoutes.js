@@ -38,14 +38,14 @@ router.post("/login", async (req, res) => {
 
 router.post("/logout", (req, res) => {
 	if (req.session.logged_in) {
+		// Remove the session variables
 		req.session.destroy(() => {
 			res.status(204).end();
 		});
 	} else {
-		res.status(404).send();
+		res.status(404).end();
 	}
 });
-
 router.post("/signup", async (req, res) => {
 	try {
 		const userData = await User.findOne({
@@ -56,14 +56,18 @@ router.post("/signup", async (req, res) => {
 				message: "Email already exists",
 			});
 		}
-		console.log(req.body);
 		const newUserData = await User.create(req.body);
 		const newUser = newUserData.get({ plain: true });
-		res.status(201).json(newUser).send();
-		// res.render("homepage", {
-		// 	newUser,
-		// 	logged_in: req.session.logged_in,
-		// });
+
+		// Make sure we save the credentials to the session so that the user automatically logins upon account creation
+		req.session.save(() => {
+			req.session.user_id = newUser.id;
+			req.session.logged_in = true;
+
+			res.status(201);
+			res.json({ user: newUser, message: "You are now logged in!" });
+		});
+		res.end();
 	} catch (err) {
 		console.log(err);
 		res.status(400).send();

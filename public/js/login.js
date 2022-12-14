@@ -63,13 +63,14 @@ const signupFormHandler = async (event) => {
 			body: JSON.stringify({ name, email, password }),
 			headers: { "Content-Type": "application/json" },
 		});
-		// const userData = await response.json();
-		// console.log(await userData);
 		if (!response.ok) {
 			alert("Failed to sign up");
 		} else {
 			// Setting the document URL doesn't allow the server to render the page with the new login status...
-			await fetch("/");
+			await fetch("/", {
+				method: "GET",
+				headers: { "Content-Type": "text/html" },
+			});
 		}
 	}
 };
