@@ -71,22 +71,22 @@ router.get("/weeklyScoreboard", (req, res) => {
 	} catch (error) {
 		console.log(error);
 	}
+});
 
-	router.get("/:week_num", async (req, res) => {
-		try {
-			const weekData = await Week.findAll({
-				attributes: ["id", "week_num"],
-				include: weekAssociations,
-				where: {
-					week_num: req.params.week_num,
-				},
-			});
-			res.status(200).json(weekData).send();
-		} catch (err) {
-			console.error(err);
-			res.status(500).send(`<h1>500 Internal Server Error</h1>`);
-		}
-	});
+router.get("/:week_num", async (req, res) => {
+	try {
+		const weekData = await Week.findAll({
+			attributes: ["id", "week_num"],
+			include: weekAssociations,
+			where: {
+				week_num: req.params.week_num,
+			},
+		});
+		res.status(200).json(weekData).send();
+	} catch (err) {
+		console.error(err);
+		res.status(500).send(`<h1>500 Internal Server Error</h1>`);
+	}
 });
 
 export default router;
