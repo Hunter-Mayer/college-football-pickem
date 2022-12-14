@@ -2,11 +2,9 @@ import express from "express";
 const router = express.Router();
 import { User } from "../models";
 import ServerInterface from "../lib/serverInterface";
-import withAuth from "../utils/auth";
 
 const SI = new ServerInterface();
 
-// replatce withAuth,
 router.get("/", async (req, res) => {
 	try {
 		const userData = await User.findAll({

@@ -30,9 +30,9 @@ router.post("/login", async (req, res) => {
 
 			res.json({ user: userData, message: "You are now logged in!" });
 		});
-		res.redirect("/homepage");
+		res.status(200).send();
 	} catch (err) {
-		res.status(400).json(err);
+		res.status(400).send();
 	}
 });
 
@@ -42,7 +42,7 @@ router.post("/logout", (req, res) => {
 			res.status(204).end();
 		});
 	} else {
-		res.status(404).end();
+		res.status(404).send();
 	}
 });
 
@@ -56,11 +56,17 @@ router.post("/signup", async (req, res) => {
 				message: "Email already exists",
 			});
 		}
-		const newUser = await User.create(req.body);
-		res.status(200).json(newUser).send();
-		res.redirect("/homepage");
+		console.log(req.body);
+		const newUserData = await User.create(req.body);
+		const newUser = newUserData.get({ plain: true });
+		res.status(201).json(newUser).send();
+		// res.render("homepage", {
+		// 	newUser,
+		// 	logged_in: req.session.logged_in,
+		// });
 	} catch (err) {
-		res.status(400).json(err).send();
+		console.log(err);
+		res.status(400).send();
 	}
 });
 

@@ -35,6 +35,8 @@ const signupFormHandler = async (event) => {
 		.querySelector("#confirmPassword-signup")
 		.value.trim();
 
+	console.log(name, email, password, confirmPassword);
+
 	// Form Entry Validation
 	let alertMessage = "";
 	if (!name) {
@@ -55,7 +57,6 @@ const signupFormHandler = async (event) => {
 
 	if (alertMessage.length !== 0) {
 		alert(alertMessage);
-		return;
 	} else {
 		const response = await fetch("/api/users/signup", {
 			method: "POST",
@@ -66,6 +67,9 @@ const signupFormHandler = async (event) => {
 		// console.log(await userData);
 		if (!response.ok) {
 			alert("Failed to sign up");
+		} else {
+			// Setting the document URL doesn't allow the server to render the page with the new login status...
+			await fetch("/");
 		}
 	}
 };
