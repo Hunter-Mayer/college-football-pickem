@@ -2,11 +2,9 @@ import express from "express";
 const router = express.Router();
 import { User } from "../models";
 import ServerInterface from "../lib/serverInterface";
-import withAuth from "../utils/auth";
 
 const SI = new ServerInterface();
 
-// replatce withAuth,
 router.get("/", async (req, res) => {
 	try {
 		const userData = await User.findAll({
@@ -28,10 +26,9 @@ router.get("/", async (req, res) => {
 
 router.get("/login", (req, res) => {
 	if (req.session.logged_in) {
-		res.redirect("/");
+		res.redirect("../");
 		return;
 	}
-
 	res.render("login");
 });
 
@@ -47,9 +44,9 @@ router.get("/scoreboard", (req, res) => {
 	});
 });
 
-// TODO: Implement route and handlebar site. Stretch Goal
-router.get("/statistics", (req, res) => {
-	res.render("statistics");
-});
+// TODO: Implement route and handlebar site. Stretch Goal. Leave commented unless implemented
+// router.get("/statistics", (req, res) => {
+// 	res.render("statistics");
+// });
 
 export default router;
