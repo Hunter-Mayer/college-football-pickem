@@ -32,13 +32,6 @@ router.get("/login", (req, res) => {
 	res.render("login");
 });
 
-router.get("/logout", (req, res) => {
-	res.redirect("/logout");
-	res.render("homepage", {
-		logged_in: req.session.logged_in,
-	});
-});
-
 router.get("/teampicker", (req, res) => {
 	res.render("teampicker", {
 		games: SI.getWeeklyPickForm(1, 1, 2023),
@@ -51,9 +44,9 @@ router.get("/scoreboard", (req, res) => {
 	});
 });
 
-// TODO: Implement route and handlebar site. Stretch Goal
-router.get("/statistics", (req, res) => {
-	res.render("statistics");
-});
+// TODO: Implement route and handlebar site. Stretch Goal. Leave commented unless implemented
+// router.get("/statistics", (req, res) => {
+// 	res.render("statistics");
+// });
 
 export default router;
