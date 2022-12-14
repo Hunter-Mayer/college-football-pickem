@@ -32,6 +32,13 @@ router.get("/login", (req, res) => {
 	res.render("login");
 });
 
+router.get("/logout", (req, res) => {
+	res.redirect("/logout");
+	res.render("homepage", {
+		logged_in: req.session.logged_in,
+	});
+});
+
 router.get("/teampicker", (req, res) => {
 	res.render("teampicker", {
 		games: SI.getWeeklyPickForm(1, 1, 2023),
