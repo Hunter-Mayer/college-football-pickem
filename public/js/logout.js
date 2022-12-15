@@ -1,11 +1,12 @@
-const logout = async () => {
+const logout = async (event) => {
+	event.preventDefault();
 	const response = await fetch("/api/users/logout", {
 		method: "POST",
 		headers: { "Content-Type": "application/json" },
 	});
 
 	if (response.ok) {
-		location.reload();
+		window.location.href = "/";
 	} else {
 		alert(response.statusText);
 	}
