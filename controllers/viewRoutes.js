@@ -79,26 +79,36 @@ router.get("/login", (req, res) => {
 });
 
 router.get("/teampicker", async (req, res) => {
-	let games;
+	let picks;
+
 	try {
-		const week = await Week.findOne({
+		const weekData = await Week.findOne({
 			attributes: ["week_num"],
 			order: [["week_num", "DESC"]],
 		});
-
-		gameAssociations.include[3].where = { week_num: week };
-		games = await Pick.findAll({
+		const week = weekData.get({ plain: true })
+		
+		userAssociations.where = { id: req.session.user_id };
+		gameAssociations.include[3].where = {
+		week_num: week.week_num,
+	};
+		picks = await Pick.findAll({
+		
 			attributes: ["id", "points"],
 			include: [gameAssociations, userAssociations, teamPickAssociations],
+		});
+		
+		picks = picks.map(element => element.get({ plain: true }));
+		console.log(picks)
+		res.render("teampicker", {
+			picks: picks,
+			logged_in: req.session.logged_in
 		});
 	} catch (err) {
 		console.error(err);
 		res.status(500).send(`<h1>500 Internal Server Error</h1>`);
 	}
 
-	res.render("teampicker", {
-		games: games,
-	});
 });
 
 router.get("/scoreboard", async (req, res) => {
@@ -117,7 +127,7 @@ router.get("/scoreboard", async (req, res) => {
 		include: [gameAssociations, userAssociations, teamPickAssociations],
 		order: [["user_id", "ASC"]],
 	});
-
+	
 	const picks = pickData.map((element) => element.get({ plain: true }));
 
 	console.log(picks);
@@ -125,6 +135,7 @@ router.get("/scoreboard", async (req, res) => {
 	res.render("scoreboard", {
 		weeks: weeks,
 		picks: picks,
+		logged_in: req.session.logged_in
 	});
 });
 
