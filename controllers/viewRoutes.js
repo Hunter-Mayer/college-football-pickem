@@ -72,17 +72,43 @@ router.get("/", async (req, res) => {
 
 router.get("/login", (req, res) => {
 	if (req.session.logged_in) {
-		res.redirect("/");
+		res.redirect("../");
 		return;
 	}
-
 	res.render("login");
 });
 
-router.get("/teampicker", (req, res) => {
-	res.render("teampicker", {
-		games: SI.getWeeklyPickForm(1, 1, 2023),
-	});
+router.get("/teampicker", async (req, res) => {
+	let picks;
+
+	try {
+		const weekData = await Week.findOne({
+			attributes: ["week_num"],
+			order: [["week_num", "DESC"]],
+		});
+		const week = weekData.get({ plain: true })
+		
+		userAssociations.where = { id: req.session.user_id };
+		gameAssociations.include[3].where = {
+		week_num: week.week_num,
+	};
+		picks = await Pick.findAll({
+		
+			attributes: ["id", "points"],
+			include: [gameAssociations, userAssociations, teamPickAssociations],
+		});
+		
+		picks = picks.map(element => element.get({ plain: true }));
+		console.log(picks)
+		res.render("teampicker", {
+			picks: picks,
+			logged_in: req.session.logged_in
+		});
+	} catch (err) {
+		console.error(err);
+		res.status(500).send(`<h1>500 Internal Server Error</h1>`);
+	}
+
 });
 
 router.get("/scoreboard", async (req, res) => {
@@ -97,9 +123,11 @@ router.get("/scoreboard", async (req, res) => {
 
 	gameAssociations.include[3].where = { week_num: weeks[0] };
 	const pickData = await Pick.findAll({
+		attributes: ["id", "points"],
 		include: [gameAssociations, userAssociations, teamPickAssociations],
+		order: [["user_id", "ASC"]],
 	});
-
+	
 	const picks = pickData.map((element) => element.get({ plain: true }));
 
 	console.log(picks);
@@ -107,12 +135,13 @@ router.get("/scoreboard", async (req, res) => {
 	res.render("scoreboard", {
 		weeks: weeks,
 		picks: picks,
+		logged_in: req.session.logged_in
 	});
 });
 
-// TODO: Implement route and handlebar site. Stretch Goal
-router.get("/statistics", (req, res) => {
-	res.render("statistics");
-});
+// TODO: Implement route and handlebar site. Stretch Goal. Leave commented unless implemented
+// router.get("/statistics", (req, res) => {
+// 	res.render("statistics");
+// });
 
 export default router;
