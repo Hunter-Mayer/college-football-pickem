@@ -12,6 +12,7 @@ const loginFormHandler = async (event) => {
 	if (!password) {
 		alertMessage += "Missing password\n";
 	}
+
 	if (alertMessage.length !== 0) {
 		alert(alertMessage);
 	} else {
