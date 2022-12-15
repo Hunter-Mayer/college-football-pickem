@@ -1,7 +1,7 @@
 <h1>Team Picker</h1>
 
 <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
-    {{#each games as |game|}}
+    {{#each picks as |pick|}}
     <div class="">
         <div class="card border-dark">
             <div class="card-body">
@@ -10,12 +10,12 @@
 
                 <form>
                     <div class="custom-control custom-radio">
-                        <input type="radio" id="{{picked_team.id}}" name="customRadio" class="custom-control-input" required>
-                        <label class="custom-control-label" for="{{picked_team.id}}">{{picked_team.name}} {{picked_team.mascot}}</label>
+                        <input type="radio" id="{{game.home_team_id}}" name="customRadio" class="custom-control-input" required>
+                        <label class="custom-control-label" for="{{game.home_team_id}}">{{game.home_team.name}} {{game.home_team.mascot}}</label>
                     </div>
                     <div class="custom-control custom-radio">
-                        <input type="radio" id="{{id}}" name="customRadio" class="custom-control-input" required>
-                        <label class="custom-control-label" for="{{id}}">{{game}}</label>
+                        <input type="radio" id="{{game.away_team_id}}" name="customRadio" class="custom-control-input" required>
+                        <label class="custom-control-label" for="{{game.away_team_id}}">{{game.away_team.name}} {{game.away_team.mascot}}</label>
                     </div>
                 </form>
                 <form>
@@ -23,7 +23,7 @@
                         <div class="col-auto my-1">
                             <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Select:</label>
                             <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" style="width: 50px" required>
-                                <option selected>{{points}}</option>
+                                <option selected>--</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
