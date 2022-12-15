@@ -1,12 +1,25 @@
-<h1 class="text-center" id="teamPicker">Team Picker</h1>
+<style>
+    body {
+        font-family: Trocchi;
+        background-image: url("/images/field.jpg");
+        background-position: cover;
+    }
+
+    .card {
+        border-style: solid;
+        border-width: thick;
+    }
+</style>
+
+<h1 class="text-center" id="teamPicker">🏈 Choose The Winning Team & Wager Your Points 🏈</h1>
+{{!-- <h4 class="text-center">🏈 🏈 🏈 Choose The Winning Team & Wager Your Points 🏈 🏈 🏈</h4> --}}
 
 <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-3">
     {{#each games as |game|}}
     <div class="col">
-        <div class="card border-dark bg-success text-light">
+        <div class="card" style="padding: 10px;">
             <div class="card-body">
-                <h4 class="text-center">🏈🏈🏈 Choose The Winning Team & Wager Your Points 🏈🏈🏈</h4>
-
+                
                 <form>
                     <div class="custom-control custom-radio">
                         <input type="radio" id="homeTeam" name="customRadio" class="custom-control-input" required>

@@ -1,22 +1,32 @@
-<h1>Scoreboard</h1>
+<style>
+	body {
+		font-family: Trocchi;
+		background-image: url("/images/field.jpg");
+		background-position: cover;
+	}
+
+	table {
+		background-color: whitesmoke;
+		border-style: solid;
+		margin-top: 15px;
+	}
+</style>
+
+<h1 class="text-center" id="scoreboardPage">🏈 Scoreboard 🏈 </h1>
 <div class="dropdown">
-	<button
-		class="btn btn-dark dropdown-toggle"
-		type="button"
-		data-bs-toggle="dropdown"
-		aria-expanded="false"
-	>
+	<p>Select Week</p>
+	<button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 		{{! TODO: Add javascript to add default name to selected week}}
 	</button>
 	<ul class="dropdown-menu weeks">
 		{{! List of available weeks in DESCENDING ORDER }}
 		{{#each weeks as |week|}}
-			<li>
-				<a class="dropdown-item week-num" href="#">
-					Week
-					{{week.week_num}}
-				</a>
-			</li>
+		<li>
+			<a class="dropdown-item week-num" href="#">
+				Week
+				{{week.week_num}}
+			</a>
+		</li>
 		{{/each}}
 	</ul>
 </div>
@@ -54,7 +64,6 @@
 		</tr>
 		{{!-- {{/each}} --}}
 		<tr>
-			Week 1 Picks
 			<th scope="row">2</th>
 			<td>Jacob</td>
 			<td>Thornton</td>
