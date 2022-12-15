@@ -16,6 +16,7 @@ const loginFormHandler = async (event) => {
 	if (alertMessage.length !== 0) {
 		alert(alertMessage);
 	} else {
+		// TODO: Implement error handling for bad requests
 		const response = await fetch("/api/users/login", {
 			method: "POST",
 			body: JSON.stringify({ email, password }),
@@ -29,6 +30,7 @@ const loginFormHandler = async (event) => {
 		}
 	}
 };
+
 document
 	.querySelector("#login-form")
 	.addEventListener("submit", loginFormHandler);
