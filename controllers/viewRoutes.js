@@ -115,6 +115,7 @@ router.get("/scoreboard", async (req, res) => {
 	const pickData = await Pick.findAll({
 		attributes: ["id", "points"],
 		include: [gameAssociations, userAssociations, teamPickAssociations],
+		order: [["user_id", "ASC"]],
 	});
 
 	const picks = pickData.map((element) => element.get({ plain: true }));
