@@ -10,12 +10,12 @@
 
                 <form>
                     <div class="custom-control custom-radio">
-                        <input type="radio" id="homeTeam" name="customRadio" class="custom-control-input" required>
-                        <label class="custom-control-label" for="homeTeam">{{home_team}}</label>
+                        <input type="radio" id="{{picked_team.id}}" name="customRadio" class="custom-control-input" required>
+                        <label class="custom-control-label" for="{{picked_team.id}}">{{picked_team.name}} {{picked_team.mascot}}</label>
                     </div>
                     <div class="custom-control custom-radio">
-                        <input type="radio" id="awayTeam" name="customRadio" class="custom-control-input" required>
-                        <label class="custom-control-label" for="awayTeam">{{away_team}}</label>
+                        <input type="radio" id="{{id}}" name="customRadio" class="custom-control-input" required>
+                        <label class="custom-control-label" for="{{id}}">{{game}}</label>
                     </div>
                 </form>
                 <form>
@@ -23,7 +23,7 @@
                         <div class="col-auto my-1">
                             <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Select:</label>
                             <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" style="width: 50px" required>
-                                <option selected>--</option>
+                                <option selected>{{points}}</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>

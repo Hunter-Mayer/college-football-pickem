@@ -88,9 +88,14 @@ router.get("/teampicker", async (req, res) => {
 
 		gameAssociations.include[3].where = { week_num: week };
 		games = await Pick.findAll({
+			where: {
+				user_id: req.session.user_id
+			},
 			attributes: ["id", "points"],
 			include: [gameAssociations, userAssociations, teamPickAssociations],
 		});
+		games = games.map(element => element.get({ plain: true }));
+		console.log(games)
 	} catch (err) {
 		console.error(err);
 		res.status(500).send(`<h1>500 Internal Server Error</h1>`);
@@ -98,6 +103,7 @@ router.get("/teampicker", async (req, res) => {
 
 	res.render("teampicker", {
 		games: games,
+		logged_in: req.session.logged_in
 	});
 });
 
@@ -124,6 +130,7 @@ router.get("/scoreboard", async (req, res) => {
 	res.render("scoreboard", {
 		weeks: weeks,
 		picks: picks,
+		logged_in: req.session.logged_in
 	});
 });
 
