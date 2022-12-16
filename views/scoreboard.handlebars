@@ -15,12 +15,12 @@
 	<ul class="dropdown-menu weeks">
 		{{! List of available weeks in DESCENDING ORDER }}
 		{{#each weeks as |week|}}
-		<li>
-			<a class="dropdown-item week-num" href="#">
-				Week
-				{{week.week_num}}
-			</a>
-		</li>
+			<li>
+				<a class="dropdown-item week-num" href="#">
+					Week
+					{{week}}
+				</a>
+			</li>
 		{{/each}}
 	</ul>
 </div>
@@ -29,60 +29,30 @@
 	<thead>
 		<tr>
 			<th scope="col">Name</th>
-			<th scope="col">Game 1</th>
-			<th scope="col">Game 2</th>
-			<th scope="col">Game 3</th>
-			<th scope="col">Game 4</th>
-			<th scope="col">Game 5</th>
-			<th scope="col">Game 6</th>
-			<th scope="col">Game 7</th>
-			<th scope="col">Game 8</th>
-			<th scope="col">Game 9</th>
-			<th scope="col">Game 10</th>
+			{{#each games as |game|}}
+				<th scope="col">{{game.game.away_team.name}}<br />
+					vs<br />
+					{{game.game.home_team.name}}</th>
+			{{/each}}
+			<th scope="col">Point Total</th>
 		</tr>
 	</thead>
 	<tbody>
-		{{!-- {{#each user}} --}}
-		<tr>
-			{{! Handlebars name }}
-			<th scope="row">{{name}}</th>
-			<td>{{pick}}:{{points}}</td>
-			<td>Otto</td>
-			<td>@mdo</td>
-			<td>Mark</td>
-			<td>Otto</td>
-			<td>@mdo</td>
-			<td>Mark</td>
-			<td>Otto</td>
-			<td>@mdo</td>
-			<td>Mark</td>
-		</tr>
-		{{!-- {{/each}} --}}
-		<tr>
-			<th scope="row">2</th>
-			<td>Jacob</td>
-			<td>Thornton</td>
-			<td>@fat</td>
-			<td>Jacob</td>
-			<td>Thornton</td>
-			<td>@fat</td>
-			<td>Jacob</td>
-			<td>Thornton</td>
-			<td>@fat</td>
-			<td>Jacob</td>
-		</tr>
-		<tr>
-			<th scope="row">3</th>
-			<td>Jacob</td>
-			<td>Thornton</td>
-			<td>@fat</td>
-			<td>Jacob</td>
-			<td>Thornton</td>
-			<td>@fat</td>
-			<td>Jacob</td>
-			<td>Thornton</td>
-			<td>@fat</td>
-			<td>Jacob</td>
+		{{#each picks as |pick|}}
+			{{#if (eq @index 0)}}
+				<tr>
+				<th scope="row">{{pick.user.name}}</th>
+			{{else}}
+				{{#unless (modulo @index 10)}}
+					</tr><tr>
+					<th scope="row">{{pick.user.name}}</th>
+				{{/unless}}
+			{{/if}}
+			<td>Pick:
+				{{pick.picked_team.name}}<br />Points:
+				{{pick.points}}
+			</td>
+		{{/each}}
 		</tr>
 	</tbody>
 </table>

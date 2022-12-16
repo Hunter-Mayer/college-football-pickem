@@ -50,6 +50,35 @@ let teamPickAssociations = {
 	},
 };
 
+let weekAssociations = [
+	{
+		model: Game,
+		attributes: ["id"],
+		include: [
+			{
+				model: Date,
+				attributes: {
+					exclude: ["createdAt", "updatedAt"],
+				},
+			},
+			{
+				model: Team,
+				as: "home_team",
+				attributes: {
+					exclude: ["createdAt", "updatedAt"],
+				},
+			},
+			{
+				model: Team,
+				as: "away_team",
+				attributes: {
+					exclude: ["createdAt", "updatedAt"],
+				},
+			},
+		],
+	},
+];
+
 // replace withAuth,
 router.get("/", async (req, res) => {
 	try {
@@ -109,28 +138,38 @@ router.get("/teampicker", async (req, res) => {
 });
 
 router.get("/scoreboard", async (req, res) => {
-	const weekNums = await Week.findAll({
-		attributes: [
-			Sequelize.fn("DISTINCT", Sequelize.col("week_num")),
-			"week_num",
-		],
-		order: [["week_num", "DESC"]],
+	const weekNums = await Week.aggregate("week_num", "DISTINCT", {
+		plain: false,
 	});
-	const weeks = weekNums.map((element) => element.get({ plain: true }));
+	const weeks = weekNums.map((element) => element.DISTINCT);
+
+	const gameData = await Week.findAll({
+		attributes: ["id", "week_num"],
+		include: weekAssociations,
+		where: {
+			week_num: weeks[0],
+		},
+	});
+
+	const games = gameData.map((element) => element.get({ plain: true }));
 
 	gameAssociations.include[3].where = { week_num: weeks[0] };
 	const pickData = await Pick.findAll({
 		attributes: ["id", "points"],
 		include: [gameAssociations, userAssociations, teamPickAssociations],
-		order: [["user_id", "ASC"]],
+		order: [
+			[User, "id", "ASC"],
+			[Game, "id", "ASC"],
+		],
 	});
-
 	const picks = pickData.map((element) => element.get({ plain: true }));
 
-	console.log(picks);
+	//console.log(picks);
+	console.log(games[0].game);
 
 	res.render("scoreboard", {
 		weeks: weeks,
+		games: games,
 		picks: picks,
 		logged_in: req.session.logged_in,
 	});
