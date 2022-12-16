@@ -1,28 +1,38 @@
-<h1>Team Picker</h1>
+<style>
+    .card {
+        border-style: solid;
+        border-width: thick;
+    }
+</style>
 
-<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+<h1 class="text-center" id="teamPicker">🏈 Choose The Winning Team & Wager Your Points 🏈</h1>
+
+<div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-3">
     {{#each picks as |pick|}}
-    <div class="">
-        <div class="card border-dark">
+    <div class="col">
+        <div class="card" style="padding: 10px;">
             <div class="card-body">
-                <h5 class="card-title">GAME! {{!-- add game id here?--}}</h5>
-                <p>Choose The Winning Team & Wager Your Points: </p>
 
                 <form>
                     <div class="custom-control custom-radio">
-                        <input type="radio" id="{{game.home_team_id}}" name="customRadio" class="custom-control-input" required>
-                        <label class="custom-control-label" for="{{game.home_team_id}}">{{game.home_team.name}} {{game.home_team.mascot}}</label>
+                        <input type="radio" id="{{game.home_team_id}}" name="customRadio" class="custom-control-input"
+                            required>
+                        <label class="custom-control-label" for="{{game.home_team_id}}">{{game.home_team.name}}
+                            {{game.home_team.mascot}}</label>
                     </div>
                     <div class="custom-control custom-radio">
-                        <input type="radio" id="{{game.away_team_id}}" name="customRadio" class="custom-control-input" required>
-                        <label class="custom-control-label" for="{{game.away_team_id}}">{{game.away_team.name}} {{game.away_team.mascot}}</label>
+                        <input type="radio" id="{{game.away_team_id}}" name="customRadio" class="custom-control-input"
+                            required>
+                        <label class="custom-control-label" for="{{game.away_team_id}}">{{game.away_team.name}}
+                            {{game.away_team.mascot}}</label>
                     </div>
                 </form>
                 <form>
                     <div class="form-row align-items-center">
                         <div class="col-auto my-1">
                             <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Select:</label>
-                            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" style="width: 50px" required>
+                            <select class="custom-select mr-sm-2 text-center" id="inlineFormCustomSelect"
+                                style="width: 50px; height: 30px; padding-right: 10px;" required>
                                 <option selected>{{points}}</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -37,7 +47,7 @@
                             </select>
                         </div>
                         <div class="col-auto my-1">
-                            <button type="submit" class="btn btn-dark">Submit</button>
+                            <button type="submit" class="btn btn-dark" style="margin-top: 10px;">Submit</button>
                         </div>
                     </div>
                 </form>
