@@ -27,7 +27,6 @@ router.post("/login", async (req, res) => {
 		req.session.save(() => {
 			req.session.user_id = userData.id;
 			req.session.logged_in = true;
-
 			res.json({ user: userData, message: "You are now logged in!" });
 		});
 	} catch (err) {
@@ -57,13 +56,11 @@ router.post("/signup", async (req, res) => {
 
 		const newUserData = await User.create(req.body);
 		const newUser = newUserData.get({ plain: true });
-		console.log(newUser);
 		// Make sure we save the credentials to the session so that the user automatically logins upon account creation
 		req.session.save(() => {
 			req.session.user_id = newUser.id;
 			req.session.logged_in = true;
-
-			res.json({ user: userData, message: "You are now logged in!" });
+			res.json({ user: newUser, message: "You are now logged in!" });
 		});
 	} catch (err) {
 		console.log(err);
