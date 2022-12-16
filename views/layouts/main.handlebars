@@ -42,7 +42,9 @@
 						<a class="nav-link" aria-current="page" href="/scoreboard">Scoreboard</a>
 					</li>
 					<li class="nav-item">
+						{{#if logged_in}}
 						<a class="nav-link" aria-current="page" href="/teampicker">Make Your Picks</a>
+						{{/if}}
 					</li>
 					<li class="nav-item">
 						{{#if logged_in}}
