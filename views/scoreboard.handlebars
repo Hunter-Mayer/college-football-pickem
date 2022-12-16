@@ -1,11 +1,15 @@
-<h1>Scoreboard</h1>
+<style>
+	table {
+		background-color: whitesmoke;
+		border-style: solid;
+		margin-top: 15px;
+	}
+</style>
+
+<h1 class="text-center" id="scoreboardPage">🏈 Weekly Scoreboard 🏈 </h1>
 <div class="dropdown">
-	<button
-		class="btn btn-dark dropdown-toggle"
-		type="button"
-		data-bs-toggle="dropdown"
-		aria-expanded="false"
-	>
+	<p>Select Week</p>
+	<button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 		{{! TODO: Add javascript to add default name to selected week}}
 	</button>
 	<ul class="dropdown-menu weeks">
@@ -14,71 +18,41 @@
 			<li>
 				<a class="dropdown-item week-num" href="#">
 					Week
-					{{week.week_num}}
+					{{week}}
 				</a>
 			</li>
 		{{/each}}
 	</ul>
 </div>
+
 <table class="table scoreboard">
 	<thead>
 		<tr>
 			<th scope="col">Name</th>
-			<th scope="col">Game 1</th>
-			<th scope="col">Game 2</th>
-			<th scope="col">Game 3</th>
-			<th scope="col">Game 4</th>
-			<th scope="col">Game 5</th>
-			<th scope="col">Game 6</th>
-			<th scope="col">Game 7</th>
-			<th scope="col">Game 8</th>
-			<th scope="col">Game 9</th>
-			<th scope="col">Game 10</th>
+			{{#each games as |game|}}
+				<th scope="col">{{game.game.away_team.name}}<br />
+					vs<br />
+					{{game.game.home_team.name}}</th>
+			{{/each}}
+			<th scope="col">Point Total</th>
 		</tr>
 	</thead>
 	<tbody>
-		{{!-- {{#each user}} --}}
-		<tr>
-			{{! Handlebars name }}
-			<th scope="row">{{name}}</th>
-			<td>{{pick}}:{{points}}</td>
-			<td>Otto</td>
-			<td>@mdo</td>
-			<td>Mark</td>
-			<td>Otto</td>
-			<td>@mdo</td>
-			<td>Mark</td>
-			<td>Otto</td>
-			<td>@mdo</td>
-			<td>Mark</td>
-		</tr>
-		{{!-- {{/each}} --}}
-		<tr>
-			Week 1 Picks
-			<th scope="row">2</th>
-			<td>Jacob</td>
-			<td>Thornton</td>
-			<td>@fat</td>
-			<td>Jacob</td>
-			<td>Thornton</td>
-			<td>@fat</td>
-			<td>Jacob</td>
-			<td>Thornton</td>
-			<td>@fat</td>
-			<td>Jacob</td>
-		</tr>
-		<tr>
-			<th scope="row">3</th>
-			<td>Jacob</td>
-			<td>Thornton</td>
-			<td>@fat</td>
-			<td>Jacob</td>
-			<td>Thornton</td>
-			<td>@fat</td>
-			<td>Jacob</td>
-			<td>Thornton</td>
-			<td>@fat</td>
-			<td>Jacob</td>
+		{{#each picks as |pick|}}
+			{{#if (eq @index 0)}}
+				<tr>
+				<th scope="row">{{pick.user.name}}</th>
+			{{else}}
+				{{#unless (modulo @index 10)}}
+					</tr><tr>
+					<th scope="row">{{pick.user.name}}</th>
+				{{/unless}}
+			{{/if}}
+			<td>Pick:
+				{{pick.picked_team.name}}<br />Points:
+				{{pick.points}}
+			</td>
+		{{/each}}
 		</tr>
 	</tbody>
 </table>
