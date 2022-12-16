@@ -2,82 +2,6 @@ import express from "express";
 const router = express.Router();
 import { Game, Date, Team, User, Week, Pick } from "../models";
 import { Sequelize } from "sequelize";
-import ServerInterface from "../lib/serverInterface";
-
-const SI = new ServerInterface();
-
-let gameAssociations = {
-	model: Game,
-	attributes: ["id"],
-	include: [
-		{
-			model: Date,
-			attributes: {
-				exclude: ["createdAt", "updatedAt"],
-			},
-		},
-		{
-			model: Team,
-			as: "home_team",
-			attributes: {
-				exclude: ["createdAt", "updatedAt"],
-			},
-		},
-		{
-			model: Team,
-			as: "away_team",
-			attributes: {
-				exclude: ["createdAt", "updatedAt"],
-			},
-		},
-		{
-			model: Week,
-			attributes: ["id", "week_num"],
-		},
-	],
-};
-
-let userAssociations = {
-	model: User,
-	attributes: ["id", "name"],
-};
-
-let teamPickAssociations = {
-	model: Team,
-	as: "picked_team",
-	attributes: {
-		exclude: ["createdAt", "updatedAt"],
-	},
-};
-
-let weekAssociations = [
-	{
-		model: Game,
-		attributes: ["id"],
-		include: [
-			{
-				model: Date,
-				attributes: {
-					exclude: ["createdAt", "updatedAt"],
-				},
-			},
-			{
-				model: Team,
-				as: "home_team",
-				attributes: {
-					exclude: ["createdAt", "updatedAt"],
-				},
-			},
-			{
-				model: Team,
-				as: "away_team",
-				attributes: {
-					exclude: ["createdAt", "updatedAt"],
-				},
-			},
-		],
-	},
-];
 
 // replace withAuth,
 router.get("/", async (req, res) => {
@@ -109,6 +33,50 @@ router.get("/login", (req, res) => {
 router.get("/teampicker", async (req, res) => {
 	let picks;
 
+	let gameAssociations = {
+		model: Game,
+		attributes: ["id"],
+		include: [
+			{
+				model: Date,
+				attributes: {
+					exclude: ["createdAt", "updatedAt"],
+				},
+			},
+			{
+				model: Team,
+				as: "home_team",
+				attributes: {
+					exclude: ["createdAt", "updatedAt"],
+				},
+			},
+			{
+				model: Team,
+				as: "away_team",
+				attributes: {
+					exclude: ["createdAt", "updatedAt"],
+				},
+			},
+			{
+				model: Week,
+				attributes: ["id", "week_num"],
+			},
+		],
+	};
+
+	let userAssociations = {
+		model: User,
+		attributes: ["id", "name"],
+	};
+
+	let teamPickAssociations = {
+		model: Team,
+		as: "picked_team",
+		attributes: {
+			exclude: ["createdAt", "updatedAt"],
+		},
+	};
+
 	try {
 		const weekData = await Week.findOne({
 			attributes: ["week_num"],
@@ -138,6 +106,79 @@ router.get("/teampicker", async (req, res) => {
 });
 
 router.get("/scoreboard", async (req, res) => {
+	let gameAssociations = {
+		model: Game,
+		attributes: ["id"],
+		include: [
+			{
+				model: Date,
+				attributes: {
+					exclude: ["createdAt", "updatedAt"],
+				},
+			},
+			{
+				model: Team,
+				as: "home_team",
+				attributes: {
+					exclude: ["createdAt", "updatedAt"],
+				},
+			},
+			{
+				model: Team,
+				as: "away_team",
+				attributes: {
+					exclude: ["createdAt", "updatedAt"],
+				},
+			},
+			{
+				model: Week,
+				attributes: ["id", "week_num"],
+			},
+		],
+	};
+
+	let userAssociations = {
+		model: User,
+		attributes: ["id", "name"],
+	};
+
+	let teamPickAssociations = {
+		model: Team,
+		as: "picked_team",
+		attributes: {
+			exclude: ["createdAt", "updatedAt"],
+		},
+	};
+
+	let weekAssociations = [
+		{
+			model: Game,
+			attributes: ["id"],
+			include: [
+				{
+					model: Date,
+					attributes: {
+						exclude: ["createdAt", "updatedAt"],
+					},
+				},
+				{
+					model: Team,
+					as: "home_team",
+					attributes: {
+						exclude: ["createdAt", "updatedAt"],
+					},
+				},
+				{
+					model: Team,
+					as: "away_team",
+					attributes: {
+						exclude: ["createdAt", "updatedAt"],
+					},
+				},
+			],
+		},
+	];
+
 	const weekNums = await Week.aggregate("week_num", "DISTINCT", {
 		plain: false,
 	});
