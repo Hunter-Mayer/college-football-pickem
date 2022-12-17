@@ -1,12 +1,32 @@
 <style>
 	table {
-		background-color: whitesmoke;
-		border-style: solid;
+		background-color: rgb(245, 245, 245, .6);
 		margin-top: 15px;
+		color: white;
+		border-collapse: collapse;
+		width: 100%;
+		table-layout: fixed;
+		border-radius: 25px;
+	}
+
+	h1 {
+		color: lightcyan;
+		text-shadow: 2px 2px black;
+		font-size: 48px;
+	}
+
+	td {
+		font-size: smaller;
+	}
+
+	thead {
+		border-bottom-width: 5px;
+		border-bottom-color: darkgreen;
+		font-size: 15px;
 	}
 </style>
 
-<h1 class="text-center" id="scoreboardPage">🏈 Weekly Scoreboard 🏈 </h1>
+<h1 class="text-center" id="scoreboardPage">Weekly Scoreboard</h1>
 <div class="dropdown">
 	<p>Select Week</p>
 	<button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -15,44 +35,46 @@
 	<ul class="dropdown-menu weeks">
 		{{! List of available weeks in DESCENDING ORDER }}
 		{{#each weeks as |week|}}
-			<li>
-				<a class="dropdown-item week-num" href="#">
-					Week
-					{{week}}
-				</a>
-			</li>
+		<li>
+			<a class="dropdown-item week-num" href="#">
+				Week
+				{{week}}
+			</a>
+		</li>
 		{{/each}}
 	</ul>
 </div>
 
-<table class="table scoreboard">
+<table class="table scoreboard table-hover">
 	<thead>
 		<tr>
 			<th scope="col">Name</th>
 			{{#each games as |game|}}
-				<th scope="col">{{game.game.away_team.name}}<br />
-					vs<br />
-					{{game.game.home_team.name}}</th>
+			<th scope="col">{{game.game.away_team.name}}<br />
+				vs<br />
+				{{game.game.home_team.name}}</th>
 			{{/each}}
-			<th scope="col">Point Total</th>
+			<th scope="col">Total Points</th>
 		</tr>
 	</thead>
 	<tbody>
 		{{#each picks as |pick|}}
 			{{#if (eq @index 0)}}
 				<tr>
-				<th scope="row">{{pick.user.name}}</th>
-			{{else}}
-				{{#unless (modulo @index 10)}}
-					</tr><tr>
 					<th scope="row">{{pick.user.name}}</th>
-				{{/unless}}
+					{{else}}
+					{{#unless (modulo @index 10)}}
+				</tr>
+				<tr>
+					<th scope="row">{{pick.user.name}}</th>
+					{{/unless}}
 			{{/if}}
 			<td>Pick:
-				{{pick.picked_team.name}}<br />Points:
-				{{pick.points}}
+					{{pick.picked_team.name}}<br />
+				Points: 
+					{{pick.points}}
 			</td>
 		{{/each}}
-		</tr>
+				</tr>
 	</tbody>
 </table>
