@@ -37,7 +37,7 @@ const seedDatabase = async () => {
 		gameData.push({
 			away_team_id: teams[i].id,
 			home_team_id: teams[i + 1].id,
-			winner_team_id: teams[Math.floor(Math.random() * 2) + i].id,
+			winner_id: teams[Math.floor(Math.random() * 2) + i].id,
 			date_id: dates[0].id,
 		});
 	}

@@ -1,38 +1,44 @@
 <style>
+	html, body, main {
+		width: 100%;
+		display: flex;
+		flex-flow: column nowrap;
+		justify-content:center;
+	}
 	table {
+		align-self: center;
 		background-color: whitesmoke;
 		border-style: solid;
 		margin-top: 15px;
+		width:100%;
+	}
+	th, tr, td {
+		text-align: center;
+		min-width: 120px;
+		vertical-align: middle;
 	}
 </style>
 
 <h1 class="text-center" id="scoreboardPage">🏈 Weekly Scoreboard 🏈 </h1>
 <div class="dropdown">
-	<p>Select Week</p>
-	<button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-		{{! TODO: Add javascript to add default name to selected week}}
-	</button>
-	<ul class="dropdown-menu weeks">
-		{{! List of available weeks in DESCENDING ORDER }}
+	<select class="bootstrap-select btn btn-dark dropdown-toggle" name="week-dropdown" id="week-dropdown">
 		{{#each weeks as |week|}}
-			<li>
-				<a class="dropdown-item week-num" href="#">
-					Week
-					{{week}}
-				</a>
-			</li>
+			<option value={{week}}>Week {{week}}</option>					
 		{{/each}}
-	</ul>
+	</select>
 </div>
 
-<table class="table scoreboard">
+<table class="table scoreboard table-striped">
 	<thead>
 		<tr>
 			<th scope="col">Name</th>
 			{{#each games as |game|}}
-				<th scope="col">{{game.game.away_team.name}}<br />
-					vs<br />
-					{{game.game.home_team.name}}</th>
+				<th scope="col">{{game.game.away_team.name}}
+					<span>
+						<br>@<br>
+					</span>
+					{{game.game.home_team.name}}
+				</th>
 			{{/each}}
 			<th scope="col">Point Total</th>
 		</tr>
@@ -48,11 +54,26 @@
 					<th scope="row">{{pick.user.name}}</th>
 				{{/unless}}
 			{{/if}}
-			<td>Pick:
-				{{pick.picked_team.name}}<br />Points:
-				{{pick.points}}
+			<td>
+				{{#if pick.game.winner.id}}
+					<p style={{#if (eq pick.picked_team.id pick.game.winner.id)}}"color: green;"{{else}}"color: red;"{{/if}}>
+						{{pick.picked_team.name}}
+					</p>
+					<p>{{pick.points}}</p>
+				{{else}}
+					<p>{{pick.picked_team.name}}</p>
+					<p>{{pick.points}}</p>
+				{{/if}}
 			</td>
 		{{/each}}
+		</tr>
+		<tr>
+			<th scope="row">Winner</th>
+			{{#each games as |game|}}
+				<td style="font-weight: bold" id="winner">
+					{{game.game.winner.name}}
+				</td>
+			{{/each}}
 		</tr>
 	</tbody>
 </table>
