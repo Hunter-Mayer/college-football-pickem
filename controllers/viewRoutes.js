@@ -204,6 +204,7 @@ router.get("/scoreboard", async (req, res) => {
 		where: {
 			week_num: weeks[0],
 		},
+		order: [[Game, "id", "ASC"]],
 	});
 
 	const games = gameData.map((element) => element.get({ plain: true }));
@@ -219,7 +220,7 @@ router.get("/scoreboard", async (req, res) => {
 	});
 	const picks = pickData.map((element) => element.get({ plain: true }));
 
-	console.log(games[0]);
+	console.log(picks[0]);
 
 	res.render("scoreboard", {
 		weeks: weeks,
