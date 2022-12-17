@@ -68,7 +68,6 @@
 			{{#unless (eq @index 0)}}
 				{{#if (not (modulo (add @index 1) 10))}}
 					<td>
-						<p>TEST</p>
 						{{#each @root.picks as |subpick|}}
 							{{#if (eq subpick.user.id ../user.id)}}
 								{{#if (eq subpick.picked_team.id subpick.game.winner.id)}}
