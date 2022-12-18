@@ -6,10 +6,7 @@ const pickCards = document.querySelectorAll('div[class="card"]')
 
 const pickedTeams = document.querySelectorAll('input[checked]')
 
-// Prints all pick ids
-for (const pickCard of pickCards) {
-    console.log(pickCard.id)
-}
+
 
 // for (const radioButton of radioButtons) {
 //     radioButton.addEventListener("change", showSelected);
@@ -21,17 +18,11 @@ for (const pickCard of pickCards) {
 //     }
 // }
 
-for (const radioButton of radioButtons) {
-    if (radioButton.checked) {
-        console.log(radioButton.id)
-    }
-}
-
 
 // Prints all point selections
-for (const pointSelection of pointSelections) {
-    console.log(pointSelection.innerHTML)
-}
+// for (const pointSelection of pointSelections) {
+//     console.log(pointSelection.innerHTML)
+// }
 
 const alert = (message, type) => {
   const wrapper = document.createElement('div')
@@ -55,16 +46,36 @@ if (editPicks) {
 
 editPicks.addEventListener("click", (event) => {
     event.preventDefault();
+    
+    // Prints all pick ids
+    for (const pickCard of pickCards) {
+        console.log(pickCard.id)
+    }
+    console.log("-----------------------")
+
+    // Prints picked_team_id
     for (const radioButton of radioButtons) {
         if (radioButton.checked) {
             console.log(radioButton.id)
         }
     }
+    console.log("-----------------------")
+    for (const pointSelection of pointSelections) {
+        console.log(pointSelection.innerHTML)
+    }
+    console.log("-----------------------")
 })
 
 
+$(document).ready(function() {
+    $("select.selectVal").change(function() {
+        let selectedItem = $(this).children("option:selected").val();
+        console.log(selectedItem)
+      });
+  });
 
-// editPicks.addEventListener("submit", (event) => {
+
+// editPicks.addEventListener("click", (event) => {
 //     event.preventDefault();
 
 //     //const id = 
