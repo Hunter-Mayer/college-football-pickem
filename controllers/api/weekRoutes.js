@@ -66,7 +66,7 @@ router.get("/all-week-nums", async (req, res) => {
 router.get("/weeklyScoreboard", (req, res) => {
 	try {
 		const scores = serverInterface.getWeeklyScoreboard();
-		console.log(scores);
+		//console.log(scores);
 		res.json(scores);
 	} catch (error) {
 		console.log(error);

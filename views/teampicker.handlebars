@@ -1,61 +1,92 @@
 <style>
-    .card {
-        border-style: solid;
-        border-width: thick;
-    }
+	.card { border-style: solid; border-width: thick; }
 </style>
 
-<h1 class="text-center" id="teamPicker">🏈 Choose The Winning Team & Wager Your Points 🏈</h1>
+<h1 class="text-center" id="teamPicker">🏈 Choose The Winning Team & Wager Your
+	Points 🏈</h1>
 
 <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-3">
-    {{#each picks as |pick|}}
-    <div class="col">
-        <div id="{{id}}" class="card" style="padding: 10px;">
-            <div class="card-body">
+	{{#each picks as |pick|}}
+		<div class="col">
+			<div id="game-{{pick.game.id}}" class="card" style="padding: 10px;">
+				<div class="card-body">
 
-                <form>
-                    <div class="custom-control custom-radio">
-                        <input type="radio" id="{{game.home_team.id}}" name="customRadio" class="custom-control-input"
-                            required>
-                        <label class="custom-control-label" for="{{game.home_team.id}}">{{game.home_team.name}}
-                            {{game.home_team.mascot}}</label>
-                    </div>
-                    <div class="custom-control custom-radio">
-                        <input type="radio" id="{{game.away_team.id}}" name="customRadio" class="custom-control-input"
-                            required>
-                        <label class="custom-control-label" for="{{game.away_team.id}}">{{game.away_team.name}}
-                            {{game.away_team.mascot}}</label>
-                    </div>
-                </form>
-                <form>
-                    <div class="form-row align-items-center">
-                        <div class="col-auto my-1">
-                            <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Select:</label>
-                            <select class="custom-select mr-sm-2 text-center selectVal" 
-                                style="width: 50px; height: 30px; padding-right: 10px;" required>
-                                <option>{{points}}</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                            </select>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    {{/each}}
+					<form>
+						<div class="custom-control custom-radio">
+							<input
+								type="radio"
+								id="team-{{pick.game.home_team.id}}"
+								name="customRadio"
+								class="custom-control-input"
+								required
+							/>
+							<label
+								class="custom-control-label"
+								for="team-{{pick.game.home_team.id}}"
+							>
+								{{pick.game.home_team.name}}
+								{{pick.game.home_team.mascot}}
+							</label>
+						</div>
+						<div class="custom-control custom-radio">
+							<input
+								type="radio"
+								id="team-{{pick.game.away_team.id}}"
+								name="customRadio"
+								class="custom-control-input"
+								required
+							/>
+							<label
+								class="custom-control-label"
+								for="team-{{pick.game.away_team.id}}"
+							>
+								{{pick.game.away_team.name}}
+								{{pick.game.away_team.mascot}}</label>
+						</div>
+					</form>
+					<form>
+						<div class="form-row align-items-center">
+							<div class="col-auto my-1">
+								<label
+									class="mr-sm-2 sr-only"
+									for="inlineFormCustomSelect"
+								>
+									Select:</label>
+								<select
+									class="custom-select mr-sm-2 text-center selectVal"
+									style="width: 50px; height: 30px; padding-right: 10px;"
+									required
+								>
+									<option>{{pick.points}}</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+									<option value="10">10</option>
+								</select>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	{{/each}}
 </div>
 <div id="liveAlertPlaceholder"></div>
 <div class="text-center my-3">
-    <button id="editPick" type="submit" class="btn btn-dark btn-lg" style="margin-top: 10px;">Submit</button>
+	<button
+		id="editPick"
+		type="submit"
+		class="btn btn-dark btn-lg"
+		style="margin-top: 10px;"
+	>
+		Submit
+	</button>
 </div>
 
 {{!TODO: Add script for handling teampicker API calls}}

@@ -68,23 +68,21 @@ $(document).ready(function () {
 	});
 });
 
-// editPicks.addEventListener("click", (event) => {
-//     event.preventDefault();
+editPicks.addEventListener("click", (event) => {
+	event.preventDefault();
 
-//     //const id =
+	//const id =
 
-//     if (event.submitter.innerHTML === "Submit") {
-//         fetch("/api/pick", {
-//             method: "PUT",
-//             headers: {
-//                 "Content-Type": "application/json"
-//             },
-//             body: JSON.stringify({id, team_pick_id, points})
-//         })
-//         .then(response => {
-//             if (response.status === 200) {
-
-//             }
-//         })
-//     }
-// })
+	if (event.submitter.innerHTML === "Submit") {
+		fetch("/api/pick", {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ id, team_pick_id, points }),
+		}).then((response) => {
+			if (response.status === 200) {
+			}
+		});
+	}
+});
