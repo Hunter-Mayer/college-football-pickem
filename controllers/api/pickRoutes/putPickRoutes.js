@@ -1,4 +1,5 @@
 import express from "express";
+import { Sequelize } from "sequelize";
 const router = express.Router();
 import { Pick } from "../../../models";
 
@@ -16,17 +17,12 @@ router.put("/", async (req, res) => {
 	console.log(req.body);
 	console.log(req.query);
 
-	const pickExists = async () => {
-		return (
-			await Pick.findOne({
-				attributes: ["id"],
-				where: { id: req.query.id },
-			})
-		)
-			.map((element) => element.dataValues.id)
-			.includes(Number(req.query.id));
-	};
+	const pickExists = await Pick.findOne({
+		attributes: ["id", "game_id", "team_pick_id"],
+		where: { id: req.query.id },
+	});
 
+	// Sequelize will return null if no record is found
 	if (pickExists) {
 		try {
 			const updatedPick = await Pick.update(
@@ -44,6 +40,14 @@ router.put("/", async (req, res) => {
 				res.status(304).send();
 			}
 		} catch (err) {
+			if (err.type === Sequelize.SequelizeValidationError) {
+				console.log("Encountered Bad Request");
+				console.log(
+					`Pick Id: ${req.query.id} ${req.query.team_pick_id} ${req.query.points}`
+				);
+				res.status(400).send(`400 Bad Request`);
+				return;
+			}
 			console.error(err);
 			res.status(500).send(`<h1>500 Internal Server Error</h1>`);
 		}

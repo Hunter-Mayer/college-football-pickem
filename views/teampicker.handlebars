@@ -14,10 +14,10 @@
 <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-3">
 	{{#each picks as |pick|}}
 		<div class="col pick-container" id="pick-{{pick.id}}">
-			<div id="game-{{pick.game.id}}" class="card" style="padding: 10px;">
+			<div id="game-{{pick.game.id}}" class="card game-container" style="padding: 10px;">
 				<div class="card-body">
 
-					<form>
+					<form class="team-picker-form">
 						<div class="custom-control custom-radio">
 							<label
 								class="custom-control-label"
@@ -73,7 +73,7 @@
 								>
 									Select:</label>
 								<select
-									class="custom-select mr-sm-2 text-center selectVal"
+									class="custom-select mr-sm-2 text-center selectVal pick-points"
 									style="width: 50px; height: 30px; padding-right: 10px;"
 									required
 								>
