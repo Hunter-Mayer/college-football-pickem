@@ -61,15 +61,13 @@ $(document).ready(function () {
 
 editPicks.addEventListener("click", async (event) => {
 	event.preventDefault();
-	console.log(event.target);
+
 	let points = [];
-	$(document).ready(function () {
-		$("option:selected").each(function () {
+	await $(document).ready(async function () {
+		await $("option:selected").each(function () {
 			points.push(this.value);
 		});
 	});
-
-	console.log(points);
 
 	for (let i = 0; i < pickIds.length; i++) {
 		const apiUrl = new URL(document.location.origin + "/api/pick");
@@ -80,8 +78,6 @@ editPicks.addEventListener("click", async (event) => {
 		apiUrl.searchParams.append("team_pick_id", pickedTeamIds[i]);
 		apiUrl.searchParams.append("points", points[i]);
 
-		console.log(apiUrl);
-
 		const response = await fetch(apiUrl, {
 			method: "PUT",
 			headers: {
@@ -90,9 +86,9 @@ editPicks.addEventListener("click", async (event) => {
 		});
 
 		if (response.ok) {
-			console.log("Picks submitted!");
+			console.log("Pick submitted!");
 		} else {
-			console.error("Picks were not updated");
+			console.error("Pick was not submitted");
 		}
 	}
 
