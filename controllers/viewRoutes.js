@@ -132,7 +132,7 @@ router.get("/scoreboard", async (req, res) => {
 			},
 			{
 				model: Team,
-				as: "winning_team",
+				as: "winner",
 				attributes: {
 					exclude: ["createdAt", "updatedAt"],
 				},
@@ -156,6 +156,41 @@ router.get("/scoreboard", async (req, res) => {
 			exclude: ["createdAt", "updatedAt"],
 		},
 	};
+	let weekAssociations = [
+		{
+			model: Game,
+			attributes: ["id"],
+			include: [
+				{
+					model: Date,
+					attributes: {
+						exclude: ["createdAt", "updatedAt"],
+					},
+				},
+				{
+					model: Team,
+					as: "home_team",
+					attributes: {
+						exclude: ["createdAt", "updatedAt"],
+					},
+				},
+				{
+					model: Team,
+					as: "away_team",
+					attributes: {
+						exclude: ["createdAt", "updatedAt"],
+					},
+				},
+				{
+					model: Team,
+					as: "winner",
+					attributes: {
+						exclude: ["createdAt", "updatedAt"],
+					},
+				},
+			],
+		},
+	];
 
 	const weekNums = await Week.aggregate("week_num", "DISTINCT", {
 		plain: false,
@@ -171,6 +206,7 @@ router.get("/scoreboard", async (req, res) => {
 		where: {
 			week_num: weeks[0],
 		},
+		order: [[Game, "id", "ASC"]],
 	});
 
 	const games = gameData.map((element) => element.get({ plain: true }));

@@ -30,7 +30,7 @@ Game.init(
 				key: "id",
 			},
 		},
-		winner_team_id: {
+		winner_id: {
 			type: DataTypes.INTEGER,
 			allowNull: true,
 			defaultValue: null,
