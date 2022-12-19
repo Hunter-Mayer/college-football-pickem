@@ -1,70 +1,114 @@
 <style>
-    .card {
-        border-style: solid;
-        border-width: thick;
-        background-color: rgb(245, 245, 245, .6);
-        border-radius: 20px;
-    }
-
-    h1 {
-        color: lightcyan;
-        text-shadow: 2px 2px black;
-        font-size: 40px;
-    }
+	.card { border-style: solid; border-width: thick; background-color: rgb(245,
+	245, 245, .6); border-radius: 20px; } h1 { color: lightcyan; text-shadow:
+	2px 2px black; font-size: 40px; } /* HIDE RADIO */ [type=radio] { position:
+	absolute; opacity: 0; width: 0; height: 0; } /* IMAGE STYLES */ [type=radio]
+	+ img { cursor: pointer; width: 50px;} /* CHECKED STYLES */
+	[type=radio]:checked + img { outline: 2px solid #f00; }
 
 </style>
 
-<h1 class="text-center" id="teamPicker">Choose The Winning Team & Wager Your Points</h1>
+<h1 class="text-center" id="teamPicker">Choose The Winning Team & Wager Your
+	Points</h1>
 
 <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-3">
-    {{#each picks as |pick|}}
-    <div class="col">
-        <div class="card" style="padding: 10px;">
-            <div class="card-body">
+	{{#each picks as |pick|}}
+		<div class="col pick-container" id="pick-{{pick.id}}">
+			<div id="game-{{pick.game.id}}" class="card game-container" style="padding: 10px;">
+				<div class="card-body">
 
-                <form>
-                    <div class="custom-control custom-radio">
-                        <input type="radio" id="{{game.home_team_id}}" name="customRadio" class="custom-control-input"
-                            required>
-                        <label class="custom-control-label" for="{{game.home_team_id}}">{{game.home_team.name}}
-                            {{game.home_team.mascot}}</label>
-                    </div>
-                    <div class="custom-control custom-radio">
-                        <input type="radio" id="{{game.away_team_id}}" name="customRadio" class="custom-control-input"
-                            required>
-                        <label class="custom-control-label" for="{{game.away_team_id}}">{{game.away_team.name}}
-                            {{game.away_team.mascot}}</label>
-                    </div>
-                </form>
-                <form>
-                    <div class="form-row align-items-center">
-                        <div class="col-auto my-1">
-                            <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Select:</label>
-                            <select class="custom-select mr-sm-2 text-center" id="inlineFormCustomSelect"
-                                style="width: 50px; height: 30px; padding-right: 10px;" required>
-                                <option selected>{{points}}</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                            </select>
-                        </div>
-                        <div class="col-auto my-1">
-                            <button type="submit" class="btn btn-dark" style="margin-top: 10px;">Submit</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    {{/each}}
+					<form class="team-picker-form">
+						<div class="custom-control custom-radio">
+							<label
+								class="custom-control-label"
+								for="team-{{pick.game.home_team.id}}"
+							>
+								<input
+									type="radio"
+									id="team-{{pick.game.home_team.id}}"
+									name="customRadio"
+									class="custom-control-input"
+									required
+                                    {{#if (eq pick.picked_team.id pick.game.home_team.id)}}
+                                        checked="checked"
+                                    {{/if}}
+								/>
+								<img
+									src="{{pick.game.home_team.logo}}"
+									alt="Logo for {{pick.game.home_team.name}}"
+								/>
+								{{pick.game.home_team.name}}
+								{{pick.game.home_team.mascot}}
+							</label>
+						</div>
+						<div class="custom-control custom-radio">
+							<label
+								class="custom-control-label"
+								for="team-{{pick.game.away_team.id}}"
+							>
+								<input
+									type="radio"
+									id="team-{{pick.game.away_team.id}}"
+									name="customRadio"
+									class="custom-control-input"
+									required
+                                    {{#if (eq pick.picked_team.id pick.game.away_team.id)}}
+                                        checked="checked"
+                                    {{/if}}
+								/>
+								<img
+									src="{{pick.game.away_team.logo}}"
+									alt="Logo for {{pick.game.away_team.name}}"
+								/>
+								{{pick.game.away_team.name}}
+								{{pick.game.away_team.mascot}}</label>
+						</div>
+					</form>
+					<form>
+						<div class="form-row align-items-center">
+							<div class="col-auto my-1">
+								<label
+									class="mr-sm-2 sr-only"
+									for="inlineFormCustomSelect"
+								>
+									Select:</label>
+								<select
+									class="custom-select mr-sm-2 text-center selectVal pick-points"
+									style="width: 50px; height: 30px; padding-right: 10px;"
+									required
+								>
+									<option value="{{pick.points}}">{{pick.points}}</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+									<option value="10">10</option>
+								</select>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	{{/each}}
+</div>
+<div id="liveAlertPlaceholder"></div>
+<div class="text-center my-3">
+	<button
+		id="editPick"
+		type="submit"
+		class="btn btn-dark btn-lg"
+		style="margin-top: 10px;"
+	>
+    Submit
+    </button>
 </div>
 
 {{!TODO: Add script for handling teampicker API calls}}
-<script src="/js/teampicker.js"></script>
+<script type="module" src="./js/teampicker.js"></script>
+<script type="module" src = "./js/lib/pick.js"></script>
