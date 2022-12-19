@@ -200,10 +200,7 @@ router.get("/scoreboard", async (req, res) => {
 
 	const gameData = await Week.findAll({
 		attributes: ["id", "week_num"],
-		include: {
-			model: Game,
-			attributes: ["id"],
-		},
+		include: weekAssociations,
 		where: {
 			week_num: weeks[0],
 		},
