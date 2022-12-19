@@ -13,14 +13,18 @@ router.put("/", async (req, res) => {
 	 * req.query.points
 	 */
 
+	console.log(req.body);
+	console.log(req.query);
+
 	const pickExists = async () => {
 		return (
-			await Pick.findAll({
+			await Pick.findOne({
 				attributes: ["id"],
+				where: { id: req.query.id },
 			})
 		)
 			.map((element) => element.dataValues.id)
-			.includes(Number(req.params.id));
+			.includes(Number(req.query.id));
 	};
 
 	if (pickExists) {

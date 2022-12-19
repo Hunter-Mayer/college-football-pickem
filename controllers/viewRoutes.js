@@ -98,6 +98,7 @@ router.get("/teampicker", async (req, res) => {
 		res.render("teampicker", {
 			picks: picks,
 			logged_in: req.session.logged_in,
+			user: req.session.user_id,
 		});
 	} catch (err) {
 		console.error(err);

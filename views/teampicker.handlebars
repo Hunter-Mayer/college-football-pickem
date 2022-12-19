@@ -13,7 +13,7 @@
 
 <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-3">
 	{{#each picks as |pick|}}
-		<div class="col">
+		<div class="col pick-container" id="pick-{{pick.id}}">
 			<div id="game-{{pick.game.id}}" class="card" style="padding: 10px;">
 				<div class="card-body">
 
@@ -105,8 +105,8 @@
 		class="btn btn-dark btn-lg"
 		style="margin-top: 10px;"
 	>
-		Submit
-	</button>
+    Submit
+    </button>
 </div>
 
 {{!TODO: Add script for handling teampicker API calls}}
