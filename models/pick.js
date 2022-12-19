@@ -32,7 +32,7 @@ Pick.init(
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			validate: {
-				isIn: [[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]],
+				isIn: [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]],
 			},
 		},
 		user_id: {
