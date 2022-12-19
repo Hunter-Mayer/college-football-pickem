@@ -65,7 +65,7 @@
 					<p>{{pick.points}}</p>
 				{{/if}}
 			</td>
-			{{#unless (eq @index 0)}}
+			{{!-- {{#unless (eq @index 0)}}
 				{{#if (not (modulo (add @index 1) 10))}}
 					<td>
 						{{#each @root.picks as |subpick|}}
@@ -83,7 +83,7 @@
 						{{/each}}
 					</td>
 				{{/if}}
-			{{/unless}}
+			{{/unless}} --}}
 		{{/each}}
 		</tr>
 		<tr>
