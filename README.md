@@ -52,9 +52,12 @@ Once the user enters the site they can navigate the site using the navbar at the
 
 Once logged in the user can view their weekly picks. Here the user can select the winner and assign point values to the ten games being played that week. Once the submit button is clicked their picks have been made for the week. If the user returns to the page they can edit their weekly picks.
 
-![Screenshot](Insert Relative Path to Screenshot Here)
+![Homepage](assets/images/cfb_homepage.png)
+![Scoreboard](assets/images/cfb_scoreboard.png)
+![Picks](assets/images/cfb_picks.png)
+![Login](assets/images/cfb_login.png)
 
-[College Pick Em](Insert URL to Site Here "Deployed Pick Em Site")
+[College Pick Em](https://safe-sands-42348.herokuapp.com/ "Deployed Pick Em Site")
 
 ## Credits
 
