@@ -1,20 +1,15 @@
 <style>
-    .card {
-        border-style: solid;
-        border-width: thick;
-        background-color: rgb(245, 245, 245, .6);
-        border-radius: 20px;
-    }
-
-    h1 {
-        color: lightcyan;
-        text-shadow: 2px 2px black;
-        font-size: 40px;
-    }
+	.card { border-style: solid; border-width: thick; background-color: rgb(245,
+	245, 245, .6); border-radius: 20px; } h1 { color: lightcyan; text-shadow:
+	2px 2px black; font-size: 40px; } /* HIDE RADIO */ [type=radio] { position:
+	absolute; opacity: 0; width: 0; height: 0; } /* IMAGE STYLES */ [type=radio]
+	+ img { cursor: pointer; width: 50px;} /* CHECKED STYLES */
+	[type=radio]:checked + img { outline: 2px solid #f00; }
 
 </style>
 
-<h1 class="text-center" id="teamPicker">Choose The Winning Team & Wager Your Points</h1>
+<h1 class="text-center" id="teamPicker">Choose The Winning Team & Wager Your
+	Points</h1>
 
 <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-3">
 	{{#each picks as |pick|}}
@@ -35,6 +30,10 @@
 									class="custom-control-input"
 									required
 								/>
+								<img
+									src="{{pick.game.home_team.logo}}"
+									alt="Logo for {{pick.game.home_team.name}}"
+								/>
 								{{pick.game.home_team.name}}
 								{{pick.game.home_team.mascot}}
 							</label>
@@ -50,6 +49,10 @@
 									name="customRadio"
 									class="custom-control-input"
 									required
+								/>
+								<img
+									src="{{pick.game.away_team.logo}}"
+									alt="Logo for {{pick.game.away_team.name}}"
 								/>
 								{{pick.game.away_team.name}}
 								{{pick.game.away_team.mascot}}</label>

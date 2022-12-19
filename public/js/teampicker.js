@@ -42,6 +42,8 @@ if (editPicks) {
 editPicks.addEventListener("click", (event) => {
 	event.preventDefault();
 
+	console.log(event.target);
+
 	// Prints all pick ids
 	for (const pickCard of pickCards) {
 		console.log(pickCard.id);
@@ -71,9 +73,7 @@ $(document).ready(function () {
 editPicks.addEventListener("click", (event) => {
 	event.preventDefault();
 
-	//const id =
-
-	if (event.submitter.innerHTML === "Submit") {
+	if (event.target.innerHTML === "Submit") {
 		fetch("/api/pick", {
 			method: "PUT",
 			headers: {
