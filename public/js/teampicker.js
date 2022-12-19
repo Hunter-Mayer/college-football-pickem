@@ -1,3 +1,5 @@
+import Pick from "./lib/pick.js";
+
 let userId;
 let pickIds = [];
 let gameIds = [];
@@ -7,51 +9,60 @@ let points = [];
 const alertPlaceholder = document.getElementById("liveAlertPlaceholder");
 const editPicks = document.getElementById("editPick");
 
-function extractIds(containerCollection, stringToReplace) {
-	const idList = [];
-	for (const container of containerCollection) {
-		idList.push(container.id.replace(stringToReplace, ""));
+function generateEmptyPicks(count) {
+	const picks = [];
+	for (let i = 0; i < count; i++) {
+		picks.push(new Pick());
 	}
-	return idList;
-}
-
-function updatePicks() {
-	let pickContainers = document.getElementsByClassName("pick-container");
-	pickIds = extractIds(pickContainers, "pick-");
-}
-
-function updateGames() {
-	let gameContainers = document.getElementsByClassName("game-container");
-	gameIds = extractIds(gameContainers, "game-");
-}
-
-function updatePickedTeams() {
-	let pickedTeamForms = document.getElementsByClassName("team-picker-form");
-	for (const form of pickedTeamForms) {
-		console.log(form);
-	}
-}
-
-function updatePoints() {
-	let pointContainers = document.getElementsByClassName("pick-points");
-	for (const container of pointContainers) {
-		for (const option of container) {
-			if (option.selected) {
-				points.push(option.value);
-			}
-		}
-	}
+	return picks;
 }
 
 function updateFormSelectionData() {
-	updatePicks();
-	updatePoints();
-	updateGames();
-	updatePickedTeams();
-	console.log(pickIds);
-	console.log(gameIds);
-	console.log(pickedTeamIds);
-	console.log(points);
+	let goodPicks = [];
+	let pickContainers = document.getElementsByClassName("pick-container");
+	let gameContainers = document.getElementsByClassName("game-container");
+	let pickedTeamForms = document.getElementsByClassName("team-picker-form");
+	let pointContainers = document.getElementsByClassName("pick-points");
+
+	let picks = generateEmptyPicks(pickContainers.length);
+	for (let i = 0; i < picks.length; i++) {
+		/**
+		 * To make unique ids, each id was prefixed with pick, game, or team. As such, the actual id must be extracted from the id before making an api call
+		 */
+		picks[i].id = pickContainers[i].id.replace("pick-", "");
+		picks[i].gameId = gameContainers[i].id.replace("game-", "");
+
+		for (const form of pickedTeamForms[i]) {
+			console.log(form);
+			// for (const inputElement of form) {
+			// 	if (inputElement.checked) {
+			// 		console.log(inputElement);
+			// 	}
+			// }
+		}
+		//picks[i].pickedTeamId;
+		/**
+		 * To get the points, we must iterate over all available options and select the one that the user has selected via the HTML attribute selected
+		 */
+		for (const option of pointContainers[i]) {
+			if (option.selected) {
+				picks[i].points = option.value;
+			}
+		}
+	}
+
+	console.log(picks);
+
+	/**
+	 * If a partial list of picks were updated, warn the user that they submitted an incomplete form
+	 */
+	if (goodPicks.length === 0) {
+		return null;
+	} else if (goodPicks.length < pickContainers.length) {
+		return false;
+	} else {
+		return true;
+	}
 }
 /**
  * Creates alert banner when you've submitted the picks. Styling provided by bootstrap
@@ -70,7 +81,19 @@ const alert = (message, type) => {
 
 editPicks.addEventListener("click", async (event) => {
 	event.preventDefault();
-	updateFormSelectionData();
+	let updateStatus = updateFormSelectionData();
+	if (updateStatus === null) {
+		alert(
+			"You must select at least one team to update your picks",
+			"danger"
+		);
+		return;
+	} else if (!updateStatus) {
+		alert(
+			" Not all picks were updated. Resubmit when all picks are updated.",
+			"warning"
+		);
+	}
 
 	const apiUrl = new URL(document.location.origin + "/api/pick");
 
@@ -101,5 +124,5 @@ editPicks.addEventListener("click", async (event) => {
 		}
 	}
 
-	alert("Your picks has been updated!", "success");
+	alert("Your picks have been updated!", "success");
 });
