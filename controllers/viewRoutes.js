@@ -132,7 +132,7 @@ router.get("/scoreboard", async (req, res) => {
 			},
 			{
 				model: Team,
-				as: "winning_team",
+				as: "winner",
 				attributes: {
 					exclude: ["createdAt", "updatedAt"],
 				},
@@ -157,6 +157,42 @@ router.get("/scoreboard", async (req, res) => {
 		},
 	};
 
+	let weekAssociations = [
+		{
+			model: Game,
+			attributes: ["id"],
+			include: [
+				{
+					model: Date,
+					attributes: {
+						exclude: ["createdAt", "updatedAt"],
+					},
+				},
+				{
+					model: Team,
+					as: "home_team",
+					attributes: {
+						exclude: ["createdAt", "updatedAt"],
+					},
+				},
+				{
+					model: Team,
+					as: "away_team",
+					attributes: {
+						exclude: ["createdAt", "updatedAt"],
+					},
+				},
+				{
+					model: Team,
+					as: "winner",
+					attributes: {
+						exclude: ["createdAt", "updatedAt"],
+					},
+				},
+			],
+		},
+	];
+
 	const weekNums = await Week.aggregate("week_num", "DISTINCT", {
 		plain: false,
 	});
@@ -164,13 +200,11 @@ router.get("/scoreboard", async (req, res) => {
 
 	const gameData = await Week.findAll({
 		attributes: ["id", "week_num"],
-		include: {
-			model: Game,
-			attributes: ["id"],
-		},
+		include: weekAssociations,
 		where: {
 			week_num: weeks[0],
 		},
+		order: [[Game, "id", "ASC"]],
 	});
 
 	const games = gameData.map((element) => element.get({ plain: true }));
@@ -187,6 +221,7 @@ router.get("/scoreboard", async (req, res) => {
 	const picks = pickData.map((element) => element.get({ plain: true }));
 
 	//console.log(picks);
+	console.log(games[0].game);
 
 	res.render("scoreboard", {
 		weeks: weeks,

@@ -1,9 +1,20 @@
 <style>
-	.card { border-style: solid; border-width: thick; }
+    .card {
+        border-style: solid;
+        border-width: thick;
+        background-color: rgb(245, 245, 245, .6);
+        border-radius: 20px;
+    }
+
+    h1 {
+        color: lightcyan;
+        text-shadow: 2px 2px black;
+        font-size: 40px;
+    }
+
 </style>
 
-<h1 class="text-center" id="teamPicker">🏈 Choose The Winning Team & Wager Your
-	Points 🏈</h1>
+<h1 class="text-center" id="teamPicker">Choose The Winning Team & Wager Your Points</h1>
 
 <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 g-3">
 	{{#each picks as |pick|}}
