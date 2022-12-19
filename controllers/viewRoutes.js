@@ -223,7 +223,8 @@ router.get("/scoreboard", async (req, res) => {
 	});
 	const picks = pickData.map((element) => element.get({ plain: true }));
 
-	console.log(games);
+	//console.log(picks);
+	console.log(games[0].game);
 
 	res.render("scoreboard", {
 		weeks: weeks,
