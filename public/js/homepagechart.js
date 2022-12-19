@@ -1,4 +1,4 @@
-const ctx = document.getElementById("weeklyScoreboard");
+const ctx = document.getElementById("seasonScoreboard");
 
 fetch("/api/week/weeklyScoreboard")
 	.then((response) => response.json())
