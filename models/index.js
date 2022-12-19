@@ -47,6 +47,14 @@ Game.belongsTo(Team, {
 	as: "away_team",
 });
 
+Team.hasMany(Game, {
+	foreignKey: "winner_id",
+});
+Game.belongsTo(Team, {
+	foreignKey: "winner_id",
+	as: "winner",
+});
+
 // Game - Date Model association
 Date.hasMany(Game, {
 	foreignKey: "date_id",
