@@ -156,7 +156,6 @@ router.get("/scoreboard", async (req, res) => {
 			exclude: ["createdAt", "updatedAt"],
 		},
 	};
-
 	let weekAssociations = [
 		{
 			model: Game,
@@ -200,7 +199,10 @@ router.get("/scoreboard", async (req, res) => {
 
 	const gameData = await Week.findAll({
 		attributes: ["id", "week_num"],
-		include: weekAssociations,
+		include: {
+			model: Game,
+			attributes: ["id"],
+		},
 		where: {
 			week_num: weeks[0],
 		},
@@ -220,7 +222,7 @@ router.get("/scoreboard", async (req, res) => {
 	});
 	const picks = pickData.map((element) => element.get({ plain: true }));
 
-	console.log(picks[0]);
+	//console.log(picks);
 
 	res.render("scoreboard", {
 		weeks: weeks,
