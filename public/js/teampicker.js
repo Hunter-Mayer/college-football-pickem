@@ -1,11 +1,5 @@
 import Pick from "./lib/pick.js";
 
-let userId;
-let pickIds = [];
-let gameIds = [];
-let pickedTeamIds = [];
-let points = [];
-
 const alertPlaceholder = document.getElementById("liveAlertPlaceholder");
 const editPicks = document.getElementById("editPick");
 
@@ -54,8 +48,6 @@ function updateFormSelectionData() {
 		}
 	}
 
-	console.log(picks);
-
 	return picks;
 }
 /**
@@ -76,6 +68,8 @@ const alert = (message, type) => {
 editPicks.addEventListener("click", async (event) => {
 	event.preventDefault();
 	let picks = updateFormSelectionData();
+	let responseStatuses = [];
+	let responseStatusCodes = [];
 
 	const apiUrl = new URL(document.location.origin + "/api/pick");
 	for (let i = 0; i < picks.length; i++) {
@@ -86,37 +80,43 @@ editPicks.addEventListener("click", async (event) => {
 		 * picked team id
 		 * points
 		 */
-		apiUrl.searchParams.set("id", picks[i].id);
-		apiUrl.searchParams.set("game_id", picks[i].gameId);
-		apiUrl.searchParams.set("team_pick_id", picks[i].pickedTeamId);
-		apiUrl.searchParams.set("points", picks[i].points);
-		/**
-		 * Checks for valid pick objects and only makes a PUT request to the API of the pick is valid
-		 */
-		const response = await fetch(apiUrl, {
-			method: "PUT",
-			headers: {
-				"Content-Type": "application/json",
-			},
-		});
+		if (picks[i].isValidPick()) {
+			apiUrl.searchParams.set("id", picks[i].id);
+			apiUrl.searchParams.set("game_id", picks[i].gameId);
+			apiUrl.searchParams.set("team_pick_id", picks[i].pickedTeamId);
+			apiUrl.searchParams.set("points", picks[i].points);
+			/**
+			 * Checks for valid pick objects and only makes a PUT request to the API of the pick is valid
+			 */
+			const response = await fetch(apiUrl, {
+				method: "PUT",
+				headers: {
+					"Content-Type": "application/json",
+				},
+			});
 
-		if (response.ok) {
-			console.log("Pick submitted!");
+			responseStatuses.push(response.status);
+			responseStatusCodes.push(
+				Math.floor(Number(response.status) / 100, 0)
+			);
 		} else {
-			console.error("Pick was not submitted");
+			responseStatuses.push(400);
+			responseStatusCodes.push(4);
 		}
 	}
-	// if (updateStatus === null) {
-	// 	alert(
-	// 		"You must select at least one team to update your picks",
-	// 		"danger"
-	// 	);
-	// 	return;
-	// } else if (!updateStatus) {
-	// 	alert(
-	// 		" Not all picks were updated. Resubmit when all picks are updated.",
-	// 		"warning"
-	// 	);
-	// }
-	alert("Your picks have been updated!", "success");
+
+	if (!(responseStatusCodes.includes(2) || responseStatusCodes.includes(3))) {
+		alert(
+			"You must select at least one team to update your picks",
+			"danger"
+		);
+		return;
+	} else if (responseStatusCodes.includes(4)) {
+		alert(
+			" Not all picks were updated. Resubmit when all picks are updated.",
+			"warning"
+		);
+	} else {
+		alert("Your picks have been updated!", "success");
+	}
 });
