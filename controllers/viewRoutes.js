@@ -94,7 +94,7 @@ router.get("/teampicker", async (req, res) => {
 		});
 
 		picks = picks.map((element) => element.get({ plain: true }));
-		console.log(picks);
+		console.log(picks[0]);
 		res.render("teampicker", {
 			picks: picks,
 			logged_in: req.session.logged_in,
@@ -220,8 +220,7 @@ router.get("/scoreboard", async (req, res) => {
 	});
 	const picks = pickData.map((element) => element.get({ plain: true }));
 
-	//console.log(picks);
-	console.log(games[0].game);
+	console.log(picks);
 
 	res.render("scoreboard", {
 		weeks: weeks,

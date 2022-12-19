@@ -6,21 +6,6 @@ const pickCards = document.querySelectorAll('div[class="card"]');
 
 const pickedTeams = document.querySelectorAll("input[checked]");
 
-// for (const radioButton of radioButtons) {
-//     radioButton.addEventListener("change", showSelected);
-// }
-
-// function showSelected(e) {
-//     if (this.checked) {
-//         console.log(this.id)
-//     }
-// }
-
-// Prints all point selections
-// for (const pointSelection of pointSelections) {
-//     console.log(pointSelection.innerHTML)
-// }
-
 const alert = (message, type) => {
 	const wrapper = document.createElement("div");
 	wrapper.innerHTML = [

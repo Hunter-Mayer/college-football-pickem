@@ -29,6 +29,9 @@
 									name="customRadio"
 									class="custom-control-input"
 									required
+                                    {{#if (eq pick.picked_team.id pick.game.home_team.id)}}
+                                        checked="checked"
+                                    {{/if}}
 								/>
 								<img
 									src="{{pick.game.home_team.logo}}"
@@ -49,6 +52,9 @@
 									name="customRadio"
 									class="custom-control-input"
 									required
+                                    {{#if (eq pick.picked_team.id pick.game.away_team.id)}}
+                                        checked="checked"
+                                    {{/if}}
 								/>
 								<img
 									src="{{pick.game.away_team.logo}}"
