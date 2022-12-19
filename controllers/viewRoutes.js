@@ -106,44 +106,6 @@ router.get("/teampicker", async (req, res) => {
 });
 
 router.get("/scoreboard", async (req, res) => {
-	let gameAssociations = {
-		model: Game,
-		attributes: ["id"],
-		include: [
-			{
-				model: Date,
-				attributes: {
-					exclude: ["createdAt", "updatedAt"],
-				},
-			},
-			{
-				model: Team,
-				as: "home_team",
-				attributes: {
-					exclude: ["createdAt", "updatedAt"],
-				},
-			},
-			{
-				model: Team,
-				as: "away_team",
-				attributes: {
-					exclude: ["createdAt", "updatedAt"],
-				},
-			},
-			{
-				model: Team,
-				as: "winner",
-				attributes: {
-					exclude: ["createdAt", "updatedAt"],
-				},
-			},
-			{
-				model: Week,
-				attributes: ["id", "week_num"],
-			},
-		],
-	};
-
 	let userAssociations = {
 		model: User,
 		attributes: ["id", "name"],
@@ -156,6 +118,7 @@ router.get("/scoreboard", async (req, res) => {
 			exclude: ["createdAt", "updatedAt"],
 		},
 	};
+
 	let weekAssociations = [
 		{
 			model: Game,
@@ -211,7 +174,45 @@ router.get("/scoreboard", async (req, res) => {
 
 	const games = gameData.map((element) => element.get({ plain: true }));
 
-	gameAssociations.include[4].where = { week_num: weeks[0] };
+	let gameAssociations = {
+		model: Game,
+		attributes: ["id"],
+		include: [
+			{
+				model: Date,
+				attributes: {
+					exclude: ["createdAt", "updatedAt"],
+				},
+			},
+			{
+				model: Team,
+				as: "home_team",
+				attributes: {
+					exclude: ["createdAt", "updatedAt"],
+				},
+			},
+			{
+				model: Team,
+				as: "away_team",
+				attributes: {
+					exclude: ["createdAt", "updatedAt"],
+				},
+			},
+			{
+				model: Team,
+				as: "winner",
+				attributes: {
+					exclude: ["createdAt", "updatedAt"],
+				},
+			},
+			{
+				model: Week,
+				attributes: ["id", "week_num"],
+				where: { week_num: weeks[0] },
+			},
+		],
+	};
+
 	const pickData = await Pick.findAll({
 		attributes: ["id", "points"],
 		include: [gameAssociations, userAssociations, teamPickAssociations],
