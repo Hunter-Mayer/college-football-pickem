@@ -35,7 +35,7 @@ const alert = (message, type) => {
 
 if (editPicks) {
 	editPicks.addEventListener("click", () => {
-		alert("Your pick has been updated!", "success");
+		alert("Your picks has been updated!", "success");
 	});
 }
 
