@@ -4,7 +4,6 @@
 const editPicks = document.getElementById("editPick");
 const alertPlaceholder = document.getElementById("liveAlertPlaceholder");
 const radioButtons = document.querySelectorAll('input[name="customRadio"]');
-const pointSelections = document.querySelectorAll("option[selected]");
 const pickCards = document.querySelectorAll('div[class="card"]');
 const pickedTeams = document.querySelectorAll("input[checked]");
 const pickContainers = document.getElementsByClassName("pick-container");
@@ -37,10 +36,6 @@ const pickedTeamIds = extractIds(pickedTeams).map((element) =>
 const pickIds = extractIds(pickContainers).map((element) =>
 	element.replace("pick-", "")
 );
-let points = [];
-for (const pointSelection of pointSelections) {
-	points.push(pointSelection.innerHTML);
-}
 
 /**
  * Creates alert banner when you've submitted the picks. Styling provided by bootstrap
@@ -56,22 +51,25 @@ const alert = (message, type) => {
 
 	alertPlaceholder.append(wrapper);
 };
-// if (editPicks) {
-// 	editPicks.addEventListener("click", () => {
-// 		alert("Your picks has been updated!", "success");
-// 	});
-// }
 
 $(document).ready(function () {
 	$("select.selectVal").change(function () {
 		let selectedItem = $(this).children("option:selected").val();
-		console.log(selectedItem);
+		//console.log(selectedItem);
 	});
 });
 
 editPicks.addEventListener("click", async (event) => {
 	event.preventDefault();
 	console.log(event.target);
+	let points = [];
+	$(document).ready(function () {
+		$("option:selected").each(function () {
+			points.push(this.value);
+		});
+	});
+
+	console.log(points);
 
 	for (let i = 0; i < pickIds.length; i++) {
 		const apiUrl = new URL(document.location.origin + "/api/pick");
