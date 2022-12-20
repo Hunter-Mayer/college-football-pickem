@@ -207,7 +207,6 @@ router.get("/scoreboard", async (req, res) => {
 		},
 		order: [[Game, "id", "ASC"]],
 	});
-
 	const games = gameData.map((element) => element.get({ plain: true }));
 
 	gameAssociations.include[4].where = { week_num: weeks[0] };
