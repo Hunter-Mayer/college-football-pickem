@@ -6,9 +6,9 @@
 	"type": "module",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "clear && node --experimental-modules --es-module-specifier-resolution=node server",
-		"dev": "clear && npx nodemon server",
-		"seed": "clear && node --experimental-modules --es-module-specifier-resolution=node seeds/seed.js"
+		"start": "node --experimental-modules --es-module-specifier-resolution=node server",
+		"dev": "npx nodemon server",
+		"seed": "node --experimental-modules --es-module-specifier-resolution=node seeds/seed.js"
 	},
 	"keywords": [],
 	"author": "",
@@ -23,8 +23,7 @@
 		"express-session": "^1.17.1",
 		"handlebars-helpers": "^0.9.8",
 		"mysql2": "^2.2.5",
-		"sequelize": "^6.3.5",
-		"sportsdataverse": "^1.2.3"
+		"sequelize": "^6.3.5"
 	},
 	"repository": {
 		"type": "git",
